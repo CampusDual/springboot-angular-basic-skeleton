@@ -1,0 +1,16 @@
+server:
+  port: 9999
+  
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-52-208-164-5.eu-west-1.compute.amazonaws.com:5432/d8s1uh2o1deln8
+    driver-class-name: org.postgresql.Driver
+    username: iczminpqewqygr
+    password: 644d9b0aaf3bb285a3bbfb0bd7bcb32647d459e53305cc39a271fd2ea410ffc8
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
