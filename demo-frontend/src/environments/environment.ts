@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiBaseUrl: 'https://172.26.15.163:9090' ,
+  authBaseUrl: 'https://172.26.15.163:9090/auth',
+  adminBaseUrl: 'https://172.26.15.163:9090/admin',
+  usersBaseUrl: 'https://172.26.15.163:9090/admin/users',
+  loginBaseUrl: 'https://172.26.15.163:9090/admin/admin-login',
+  profilesBaseUrl: 'https://172.26.15.163:9090/admin/profiles',
+  clientName: 'firma',
+  clientSecret: '8Fjkk59bXKws8bmMNFZB',
 };
 
 /*

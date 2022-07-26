@@ -1,0 +1,135 @@
+.login-outer-container {
+  margin: 8px;
+  min-height: 640px;
+  background-color: #bdbdbd;
+  background-image: url(../../../assets/images/code_background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .login-inner-container {
+    box-sizing: content-box;
+    position: absolute;
+    left: 50%;
+    top: 5em;
+    transform: translate(-50%, 0);
+    -moz-transform: translate(-50%, 0);
+    -webkit-transform: translate(-50%, 0);
+    width: 250px;
+    padding: 1em;
+    background-color: #FFFFFF;
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .logo-container {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      position: relative;
+      background-color: #FFFFFF;
+      top: -75px;
+      left: 50%;
+      -webkit-transform: translate(-50%, 0%);
+
+      img {
+        max-height: 125px;
+        max-width: 125px;
+        margin-left: 12px;
+        margin-top: 46px;
+      }
+    }
+
+    .form {
+      position: relative;
+      top: -75px;
+    }
+
+    .logo-europa-concello-container {
+      position: absolute;
+      bottom: -100px;
+      left: 50%;
+      -webkit-transform: translate(-50%, 0%);
+
+      img {
+        height: 72px;
+      }
+    }
+
+    .session-expired {
+      text-align: center;
+    }
+
+    button {
+      width: 100%;
+      margin: 30px 0 0;
+    }
+
+    .dark_text {
+      color: #c5c5c5;
+      font-size: 9pt;
+    }
+
+    .title_text {
+      color: #7b7a79;
+      font-size: 10pt;
+      font-weight: bold;
+    }
+  }
+}
+
+@media (min-width: 480px) {
+  .login-outer-container {
+    .login-inner-container {
+      width: 370px;
+      padding-right: 2em;
+      padding-left: 2em;
+
+      .logo-europa-concello-container {
+        bottom: -180px;
+        img {
+          height: 111px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .login-outer-container {
+    .login-inner-container {
+      width: 450px;
+      padding-right: 5em;
+      padding-left: 5em;
+
+      .logo-europa-concello-container {
+        bottom: -200px;
+        img {
+          height: 156px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-height: 580px) {
+  .login-outer-container {
+    .login-inner-container {
+      padding-top: 8em;
+      padding-bottom: 5em;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      -moz-transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      .logo-container {
+        position: absolute;
+      }
+      .form {
+        position: unset;
+        top: unset;
+      }
+    }
+  }
+}
