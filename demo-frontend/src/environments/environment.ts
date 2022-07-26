@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: 'https://172.26.15.163:9090' ,
-  authBaseUrl: 'https://172.26.15.163:9090/auth',
-  adminBaseUrl: 'https://172.26.15.163:9090/admin',
-  usersBaseUrl: 'https://172.26.15.163:9090/admin/users',
-  loginBaseUrl: 'https://172.26.15.163:9090/admin/admin-login',
-  profilesBaseUrl: 'https://172.26.15.163:9090/admin/profiles',
+  apiBaseUrl: 'http://localhost:9999' ,
+  authBaseUrl: 'http://localhost:9999/auth',
+  adminBaseUrl: 'http://localhost:9999',
+  usersBaseUrl: 'http://localhost:9999/users',
+  loginBaseUrl: 'http://localhost:9999/login',
+  profilesBaseUrl: 'http://localhost:9999/profiles',
   clientName: 'firma',
   clientSecret: '8Fjkk59bXKws8bmMNFZB',
 };
