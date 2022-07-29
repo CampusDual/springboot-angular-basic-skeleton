@@ -24,16 +24,22 @@ export class NavComponent implements OnInit, OnDestroy {
   @ViewChild('commandbarSidenav') public sidenav: MatSidenav;
 
   sidenavRoutes: ROUTE[] = [
+    // {
+    //   icon: 'people_outline',
+    //   route: 'profiles',
+    //   title: 'menu.profiles',
+    //   allowedRoles: ['PROFILES']
+    // }, {
+    //   icon: 'people',
+    //   route: 'users',
+    //   title: 'menu.users',
+    //   allowedRoles: ['USERS']
+    // },
     {
-      icon: 'people_outline',
-      route: 'profiles',
-      title: 'menu.profiles',
-      allowedRoles: ['PROFILES']
-    }, {
       icon: 'people',
-      route: 'users',
-      title: 'menu.users',
-      allowedRoles: ['USERS']
+      route: 'contacts',
+      title: 'menu.contacts',
+      allowedRoles: ['CONTACTS']
     },
   ];
 

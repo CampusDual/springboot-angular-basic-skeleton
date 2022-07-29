@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.rest.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.exception.DemoException;
-import com.example.demo.response.RESTResponse;
+import com.example.demo.rest.response.RESTResponse;
 import com.example.demo.service.UserService;
 
 @RestController

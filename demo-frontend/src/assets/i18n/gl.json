@@ -4,12 +4,13 @@
     "password": "Contrasinal",
     "enter": "Entrar"
   },
-  "administration": {
-    "title": "Administración"
+  "demo": {
+    "title": "Demo"
   },
   "menu": {
     "profiles": "Perfiles",
     "sections": "Seccións",
+    "contacts": "Contactos",
     "users": "Usuarios",
     "logout": "Pechar sesión"
   },
@@ -22,5 +23,6 @@
   "ES": "Castelán",
   "GL": "Galego",
   "USER_NOT_EXISTS": "O usuario non existe na base de datos",
+  "WRONG_PASSWORD": "Contrasinal incorrecta",
   "CLOSE": "PECHAR"
 }

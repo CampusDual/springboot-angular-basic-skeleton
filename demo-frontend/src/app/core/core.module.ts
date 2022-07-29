@@ -25,8 +25,8 @@ import { NavComponent } from './components/nav/nav.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TranslateModule } from '@ngx-translate/core';
-// import { FormTabgroupComponent } from './components/form-tabgroup/form-tabgroup.component';
-// import { FormTabComponent } from './components/form-tab/form-tab.component';
+import { FormTabgroupComponent } from './components/form-tabgroup/form-tabgroup.component';
+import { FormTabComponent } from './components/form-tab/form-tab.component';
 import { DynamicTabsDirective } from './components/form-tabgroup/dynamic-tabs.directive';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -35,8 +35,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     NavigationBarComponent,
     NavComponent,
-    // FormTabgroupComponent,
-    // FormTabComponent,
+    FormTabgroupComponent,
+    FormTabComponent,
     DynamicTabsDirective],
   imports: [
     TranslateModule,
@@ -66,9 +66,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   exports: [
     NavigationBarComponent,
     NavComponent,
-    // FormTabgroupComponent,
-    // FormTabComponent
+    FormTabgroupComponent,
+    FormTabComponent
   ],
-  // entryComponents: [FormTabComponent]
+  entryComponents: [FormTabComponent]
 })
 export class CoreModule { }

@@ -91,6 +91,7 @@ export class FormTabgroupComponent implements AfterContentInit {
           return new Observable((observer: Observer<boolean>) => observer.next(false));
         }
       });
+      return new Observable((observer: Observer<boolean>) => observer.next(false));
     } else {
       this.doCloseTab(tab);
       return new Observable((observer: Observer<boolean>) => observer.next(true));
@@ -145,6 +146,8 @@ export class FormTabgroupComponent implements AfterContentInit {
     const activeTabs = this.dynamicTabs.filter(tab => tab.active);
     if (activeTabs.length > 0) {
       return activeTabs[0];
+    } else {
+      return null;
     }
   }
 

@@ -12,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
 import com.example.demo.entity.enums.SectionsEnum;
-import com.example.demo.error.UserError;
+import com.example.demo.entity.error.UserError;
 import com.example.demo.exception.DemoException;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.response.RESTResponse;
+import com.example.demo.rest.response.RESTResponse;
 
 
 @Service

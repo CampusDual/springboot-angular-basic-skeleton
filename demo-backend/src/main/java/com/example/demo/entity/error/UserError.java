@@ -1,4 +1,4 @@
-package com.example.demo.error;
+package com.example.demo.entity.error;
 
 public enum UserError {
 	ID_REQUIRED, LOGIN_REQUIRED, NAME_REQUIRED, SURNAME1_REQUIRED, SURNAME2_REQUIRED, NIF_REQUIRED, NIF_MALFORMED,

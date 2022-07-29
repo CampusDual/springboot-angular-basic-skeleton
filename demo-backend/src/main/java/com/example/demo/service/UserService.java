@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.response.RESTResponse;
+import com.example.demo.rest.response.RESTResponse;
 
 public interface UserService {
 

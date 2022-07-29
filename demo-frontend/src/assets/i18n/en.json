@@ -4,12 +4,13 @@
     "password": "Password",
     "enter": "Enter"
   },
-  "administration": {
-    "title": "Administration"
+  "demo": {
+    "title": "Demo"
   },
   "menu": {
     "profiles": "Profiles",
     "sections": "Sections",
+    "contacts": "Contacts",
     "users": "Users",
     "logout": "Logout"
   },
@@ -22,5 +23,6 @@
   "ES": "Spanish",
   "GL": "Galician",
   "USER_NOT_EXISTS": "User not exists in the database",
+  "WRONG_PASSWORD": "Wrong password",
   "CLOSE": "CLOSE"
 }

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
+import com.example.demo.utils.CipherUtils;
 
 
 @Component
@@ -35,25 +36,29 @@ public class DemoAuthenticationProvider implements AuthenticationProvider  {
     @Transactional
     public Authentication authenticate(Authentication authentication) 
       throws AuthenticationException {
- 
-        String name = authentication.getName();
-        String password = authentication.getCredentials().toString();
-        
-        return getUserInfo(name, password);
+        return getUserInfo(authentication.getName(), authentication.getCredentials().toString());
     }
 
     private UsernamePasswordAuthenticationToken getUserInfo(String userName, String password) {
+    	CipherUtils cipher = new CipherUtils();
 		Set<GrantedAuthority> listAuthorities = new HashSet<>();
-		Optional<User> user = userRepository.findByLogin(userName);
-		if (!user.isPresent()) {
+		User user = new User();
+		Optional<User> optUser = userRepository.findByLogin(userName);
+		if (!optUser.isPresent()) {
 			logger.error("The user not exists in database");
 			throw new BadCredentialsException("USER_NOT_EXISTS");
 		} else {
-			for (Section section : user.get().getSections()) {
+			user = optUser.get();
+		if (user.getPassword().equals(cipher.encrypt(userName, password))) {
+			for (Section section : user.getSections()) {
 				listAuthorities.add(new SimpleGrantedAuthority(section.getAlias()));
 			}
+			return new UsernamePasswordAuthenticationToken(userName, password, listAuthorities);
+		} else {
+			logger.error("Wrong password");
+			throw new BadCredentialsException("WRONG_PASSWORD");
 		}
-		return new UsernamePasswordAuthenticationToken(userName, password, listAuthorities);
+	}
     }
     
     @Override

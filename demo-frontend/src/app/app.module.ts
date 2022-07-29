@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ContactListComponent } from './contact/contact-list/contact-list.component';
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -29,7 +28,6 @@ import { CoreModule } from './core/core.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ContactListComponent,
     ConfirmationDialogComponent,
     MatSnackBarComponent
   ],

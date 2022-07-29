@@ -1,20 +1,63 @@
 <div fxLayout="row" class="login-outer-container">
   <div class="login-inner-container mat-elevation-z1">
     <div class="logo-container mat-elevation-z4">
-      <img src="./assets/images/campus-dual-azul-squared.png" alt = "Logo">
+      <img src="./assets/images/campus-dual-azul-squared.png" alt="Logo" />
     </div>
 
     <form class="form">
-
-      <mat-form-field style="width:100%;">
-        <input matInput type="text" color="primary" #username id="username" name="username" placeholder="{{ 'login.user' | translate }}">
+      <mat-form-field style="width: 100%">
+        <input
+          matInput
+          type="text"
+          color="primary"
+          #username
+          id="username"
+          name="username"
+          placeholder="{{ 'login.user' | translate }}"
+        />
       </mat-form-field>
 
-      <mat-form-field style="width:100%;">
-        <input matInput type="password" color="primary" #password id="password" name="password" placeholder="{{ 'login.password' | translate }}">
+      <mat-form-field style="width: 100%">
+        <input
+          matInput
+          type="password"
+          color="primary"
+          #password
+          id="password"
+          name="password"
+          placeholder="{{ 'login.password' | translate }}"
+        />
       </mat-form-field>
 
-      <button mat-raised-button type="submit" color="primary" (click)="login(username.value, password.value, $event)" id="login-button">{{ 'login.enter' | translate }}</button>
+      <button
+        mat-raised-button
+        type="submit"
+        color="primary"
+        (click)="login(username.value, password.value, $event)"
+        id="login-button"
+      >
+        {{ "login.enter" | translate }}
+      </button>
+
+      <div
+        fxlayout="column"
+        fxlayoutalign="center center"
+        layout-padding=""
+        style="
+          flex-direction: column;
+          box-sizing: border-box;
+          display: flex;
+          place-content: center;
+          align-items: center;
+          padding: 10px;
+        "
+        ng-reflect-fx-layout="column"
+        ng-reflect-fx-layout-align="center center"
+      >
+        <span class="login_info">Use this user and password for login:</span>
+        <span class="dark_text">Username : demo</span>
+        <span class="dark_text">Password : demouser</span>
+      </div>
     </form>
   </div>
 </div>

@@ -1,41 +1,29 @@
-package com.example.demo.entity;
+package com.example.demo.rest.response;
 
-import javax.persistence.*;
+import com.example.demo.entity.Contact;
 
-@Entity
-@Table(name = "contacts")
-public class Contact {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class ContactResponse {
+
 	private String name;
 	private String surname1;
 	private String surname2;
 	private Integer phone;
 	private String email;
 
-	public Contact() {
-	}
-	
-	public Contact(String name, String surname1, String surname2, Integer phone, String email) {
+	public ContactResponse(Integer id, String name, String surname1, String surname2, Integer phone, String email) {
 		this.name = name;
 		this.surname1 = surname1;
 		this.surname2 = surname2;
 		this.phone = phone;
 		this.email = email;
 	}
-
-	public Contact(Integer id, String name, String surname1, String surname2, Integer phone, String email) {
-		this(name, surname1, surname2, phone, email);
-		this.id = id;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+	
+	public ContactResponse(Contact contact) {
+		this.name = contact.getName();
+		this.surname1 = contact.getSurname1();
+		this.surname2 = contact.getSurname2();
+		this.phone = contact.getPhone();
+		this.email = contact.getEmail();
 	}
 
 	public String getName() {

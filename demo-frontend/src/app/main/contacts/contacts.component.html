@@ -1,0 +1,85 @@
+<app-form-tabgroup>
+  <app-form-tab title="{{ 'menu.contacts' | translate }}">
+    <div fxLayout="row" fxLayoutAlign="space-between"
+      style="flex-direction: row; box-sizing: border-box; display: flex; max-height: 100%; place-content: space-between; align-items: center;"
+      fxLayout.lt-sm="column" fxLayoutGap="20px" fxLayoutGap.lt-sm="10px">
+      <div fxFlex fxLayout.lt-sm="row" class="k-flex-wrap">
+        <button class="table-header-button my-5" mat-stroked-button (click)="onAdd()">
+          <mat-icon>add</mat-icon> {{ 'new' | translate }}
+        </button>
+        <button class="table-header-button my-5" mat-stroked-button [disabled]="!selection.hasValue()" (click)="delete()">
+          <mat-icon>delete</mat-icon> {{ 'delete' | translate }}
+        </button>
+        <button class="table-header-button my-5" mat-stroked-button (click)="loadContactsPage()">
+          <mat-icon>refresh</mat-icon> {{ 'refresh' | translate }}
+        </button>
+      </div>
+      <div fxflex>
+        <mat-form-field>
+          <input matInput placeholder="{{ 'filter' | translate }}" #input id="contacts-filter" name="contacts-filter">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="mat-elevation-z8 table-responsive">
+      <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear class="w-full">
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select">
+          <th id="header" mat-header-cell *matHeaderCellDef>
+            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()">
+            </mat-checkbox>
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+              [checked]="selection.isSelected(row)">
+            </mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'table.contacts.name' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="name"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="surname1">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'table.contacts.surname1' | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="surname1"> {{row.surname1}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="surname2">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'table.contacts.surname2' | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="surname2"> {{row.surname2}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'table.contacts.phone' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="phone"> {{row.phone}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'table.contacts.email' | translate }} </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="email"> {{row.email}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onEdit(row)" class="row-link"
+          [style.background]="highlightedRow && highlightedRow.id === row.id ? 'rgba(0, 0, 0, 0.15)' : ''">
+        </mat-row>
+      </table>
+
+      <mat-card *ngIf="dataSource.loading$ | async" style="display: flex; justify-content: center; align-items: center">
+        <mat-spinner></mat-spinner>
+      </mat-card>
+
+      <mat-paginator [length]="dataSource.totalElements" [pageSize]="20" [pageSizeOptions]="[10, 20, 50, 100]" showFirstLastButtons></mat-paginator>
+    </div>
+  </app-form-tab>
+</app-form-tabgroup>
+
+<ng-template let-data="data" #edit>
+  <app-create-contact [idContact]="data" (saveDetails)="onSaveDetails($event)" (modifiedData)="onModifiedData()">
+  </app-create-contact>
+</ng-template>

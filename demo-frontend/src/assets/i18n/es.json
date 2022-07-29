@@ -4,12 +4,13 @@
     "password": "Contraseña",
     "enter": "Entrar"
   },
-  "administration": {
-    "title": "Administración"
+  "demo": {
+    "title": "Demo"
   },
   "menu": {
     "profiles": "Perfiles",
     "sections": "Secciones",
+    "contacts": "Contactos",
     "users": "Usuarios",
     "logout": "Cerrar sesión"
   },
@@ -22,5 +23,6 @@
   "ES": "Español",
   "GL": "Gallego",
   "USER_NOT_EXISTS": "El usuario no existe en la base de datos",
+  "WRONG_PASSWORD": "Contraseña incorrecta",
   "CLOSE": "CERRAR"
 }

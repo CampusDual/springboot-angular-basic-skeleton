@@ -52,6 +52,11 @@
 			<artifactId>spring-security-jwt</artifactId>
 			<version>1.0.10.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>com.borjaglez</groupId>
+			<artifactId>springify-repository</artifactId>
+			<version>0.3.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>

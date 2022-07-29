@@ -8,19 +8,13 @@ export const API_CONFIG = {
   getAllProfiles: environment.adminBaseUrl + '/getAllProfiles',
   getAllSections: environment.adminBaseUrl + '/getAllSections',
 
-  // Users API
-  getUsers: environment.usersBaseUrl + '/getUsers',
-  getUser: environment.usersBaseUrl + '/getUser',
-  createUser: environment.usersBaseUrl + '/createUser',
-  editUser: environment.usersBaseUrl + '/editUser',
-  deleteUser: environment.usersBaseUrl + '/deleteUser',
 
 
-  // Profiles API
-  getProfiles: environment.profilesBaseUrl + '/getProfiles',
-  getProfile: environment.profilesBaseUrl + '/getProfile',
-  createProfile: environment.profilesBaseUrl + '/createProfile',
-  editProfile: environment.profilesBaseUrl + '/editProfile',
-  deleteProfile: environment.profilesBaseUrl + '/deleteProfile',
-  cloneProfile: environment.profilesBaseUrl + '/cloneProfile',
+  // Contacts API
+  getContacts: environment.contactsBaseUrl + '/getContacts',
+  getContact: environment.contactsBaseUrl + '/getContact',
+  createContact: environment.contactsBaseUrl + '/createContact',
+  editContact: environment.contactsBaseUrl + '/editContact',
+  deleteContact: environment.contactsBaseUrl + '/deleteContact',
+
 };
