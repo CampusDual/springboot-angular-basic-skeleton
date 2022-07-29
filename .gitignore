@@ -33,3 +33,5 @@ build/
 demo-frontend/node_modules
 demo-frontend/.vscode
 demo-frontend/.angular
+demo-backend/.classpath
+demo-backend/.project
