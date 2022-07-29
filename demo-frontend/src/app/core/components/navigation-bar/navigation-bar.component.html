@@ -1,0 +1,49 @@
+<mat-toolbar color="primary" class="app-navigation-bar mat-elevation-z4">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="toggleSidenav.emit()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="toolbar-title"> {{ 'administration.title' | translate }} </span>
+
+    <div fxFlex fxLayout fxLayoutAlign="flex-end">
+      <ul fxLayout fxLayoutGap="20px" class="navigation-items">
+        <li fxHide.xs>
+          <a rel="noopener noreferrer" mat-icon-button href="https://www.imatia.com/" target="_blank">
+            <mat-icon>help_outline</mat-icon>
+          </a>
+        </li>
+
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="language">
+            <mat-icon matBadge="{{selectedLanguage}}">language</mat-icon>
+          </button>
+          <mat-menu #language="matMenu">
+            <button mat-menu-item (click)="toogleLanguage('es')">
+              <span>{{ 'language.spanish' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="toogleLanguage('gl')">
+              <span>{{ 'language.galician' | translate }}</span>
+            </button>
+            <button mat-menu-item (click)="toogleLanguage('en')">
+              <span>{{ 'language.english' | translate }}</span>
+            </button>
+          </mat-menu>
+        </li>
+
+        <li>
+          <button mat-icon-button [matMenuTriggerFor]="auth">
+            <mat-icon>person_outline</mat-icon>
+          </button>
+          <mat-menu #auth="matMenu">
+            <span matSubheader><strong>{{userName}}</strong></span>
+            <button mat-menu-item (click)="logout()">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>{{ 'menu.logout' | translate }}</span>
+            </button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

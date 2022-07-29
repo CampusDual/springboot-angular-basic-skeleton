@@ -7,14 +7,14 @@
     <form class="form">
 
       <mat-form-field style="width:100%;">
-        <input matInput type="text" color="primary" #username id="username" name="username" placeholder="{{ 'user' | translate }}">
+        <input matInput type="text" color="primary" #username id="username" name="username" placeholder="{{ 'login.user' | translate }}">
       </mat-form-field>
 
       <mat-form-field style="width:100%;">
-        <input matInput type="password" color="primary" #password id="password" name="password" placeholder="{{ 'password' | translate }}">
+        <input matInput type="password" color="primary" #password id="password" name="password" placeholder="{{ 'login.password' | translate }}">
       </mat-form-field>
 
-      <button mat-raised-button type="submit" color="primary" (click)="login(username.value, password.value, $event)" id="login-button">{{ 'enter' | translate }}</button>
+      <button mat-raised-button type="submit" color="primary" (click)="login(username.value, password.value, $event)" id="login-button">{{ 'login.enter' | translate }}</button>
     </form>
   </div>
 </div>

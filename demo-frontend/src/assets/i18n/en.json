@@ -1,5 +1,26 @@
 {
-  "user": "User",
-  "password": "Password",
-  "enter": "Enter"
+  "login": {
+    "user": "User",
+    "password": "Password",
+    "enter": "Enter"
+  },
+  "administration": {
+    "title": "Administration"
+  },
+  "menu": {
+    "profiles": "Profiles",
+    "sections": "Sections",
+    "users": "Users",
+    "logout": "Logout"
+  },
+  "language": {
+    "spanish": "Spanish",
+    "galician": "Galician",
+    "english": "English"
+  },
+  "EN": "English",
+  "ES": "Spanish",
+  "GL": "Galician",
+  "USER_NOT_EXISTS": "User not exists in the database",
+  "CLOSE": "CLOSE"
 }

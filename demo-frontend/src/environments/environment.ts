@@ -12,6 +12,7 @@ export const environment = {
   profilesBaseUrl: 'http://localhost:9999/profiles',
   clientName: 'demo',
   clientSecret: '8Fjkk59bXKws8bmMNFZB',
+  isDebugMode: false,
   idle: 1,
   idleTimeout: 900,
   idlePingInterval: 15

@@ -1,0 +1,25 @@
+<mat-sidenav-container autosize class="sidenav-container">
+  <mat-sidenav #navigationSidenav mode="over" role="navigation">
+    <mat-toolbar>
+      <mat-toolbar-row (click)="navigationSidenav.close()">
+        <h2 class="toolbar-title"> {{ 'administration.title' | translate }} </h2>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" style="height: 0;"></a>
+      <a *ngFor="let item of allowedRoutes" mat-list-item (click)="navigationSidenav.close()" [routerLink]="[item.route]"
+        routerLinkActive="list-item-active">
+        <mat-icon matListIcon class="app-nav-list-icon"> {{ item.icon }} </mat-icon>
+        {{ item.title | translate }}
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content role="main">
+    <app-navigation-bar *ngIf="isAuthenticated()" (toggleSidenav)="navigationSidenav.toggle()"></app-navigation-bar>
+    <div [ngClass]="{'page-content': isAuthenticated()}">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

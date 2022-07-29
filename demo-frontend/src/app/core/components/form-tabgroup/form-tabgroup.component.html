@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs">
+  <li *ngFor="let tab of tabs" (click)="selectTab(tab)" [class.active]="tab.active" style="cursor: pointer">
+    <a class="tab" style="color: #555; font-size: 14px">{{ tab.title | translate }}</a>
+  </li>
+  <li *ngFor="let tab of dynamicTabs" (click)="selectTab(tab)" [class.active]="tab.active" style="cursor: pointer">
+    <a class="tab" style="color: #555; font-size: 14px" *ngIf="!tab.modified">{{ tab.title | translate }}
+      <span class="glyphicon glyphicon-remove tab-close" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></span></a>
+    <a class="tab" style="color: #555; font-size: 14px" *ngIf="tab.modified"><strong>{{ tab.title | translate }} * </strong>
+      <span class="glyphicon glyphicon-remove tab-close" *ngIf="tab.isCloseable" (click)="closeTab(tab)"></span></a>
+  </li>
+</ul>
+<ng-content></ng-content>
+<ng-template dynamic-tabs #container></ng-template>

@@ -1,5 +1,26 @@
 {
-  "user": "Usuario",
-  "password": "Contraseña",
-  "enter": "Entrar"
+  "login": {
+    "user": "Usuario",
+    "password": "Contraseña",
+    "enter": "Entrar"
+  },
+  "administration": {
+    "title": "Administración"
+  },
+  "menu": {
+    "profiles": "Perfiles",
+    "sections": "Secciones",
+    "users": "Usuarios",
+    "logout": "Cerrar sesión"
+  },
+  "language": {
+    "spanish": "Español",
+    "galician": "Gallego",
+    "english": "Inglés"
+  },
+  "EN": "Inglés",
+  "ES": "Español",
+  "GL": "Gallego",
+  "USER_NOT_EXISTS": "El usuario no existe en la base de datos",
+  "CLOSE": "CERRAR"
 }

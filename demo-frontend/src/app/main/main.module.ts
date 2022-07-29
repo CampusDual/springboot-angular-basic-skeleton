@@ -35,13 +35,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 // import { CreateProfileComponent } from './profiles/create-profile/create-profile.component';
 
 // import { PdfJsViewerModule } from 'ng2-pdfjs-viewer'; // <-- Import PdfJsViewerModule module
-// import { CoreModule } from '../core/core.module';
 import { AppComponent } from '../app.component';
 // import { FormTabComponent } from '../core/components/form-tab/form-tab.component';
 import { BrowserModule } from '@angular/platform-browser';
+// import { FormTabComponent } from '../core/components/form-tab/form-tab.component';
 // import { SignaturesComponent } from './signatures/signatures.component';
 // import { EventsComponent } from './events/events.component';
-// import { LightboxModule } from 'ngx-lightbox';
+import { LightboxModule } from 'ngx-lightbox';
+import { CoreModule } from '../core/core.module';
 // import { FilterItemDirective } from './directives/filter-item.directive';
 // import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
@@ -82,15 +83,15 @@ import { BrowserModule } from '@angular/platform-browser';
     FlexLayoutModule,
     MatChipsModule,
     // PdfJsViewerModule,
-    // CoreModule,
+    CoreModule,
     MatMenuModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    // LightboxModule,
+    LightboxModule,
     // ShowHidePasswordModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, DatePipe],
-  // entryComponents: [FormTabComponent, DocumentTypeDialogHelperComponent],
+  // entryComponents: [FormTabComponent],
 })
 export class MainModule {}

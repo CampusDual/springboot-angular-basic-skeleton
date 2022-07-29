@@ -1,5 +1,26 @@
 {
-  "user": "Usuario",
-  "password": "Contrasinal",
-  "enter": "Entrar"
+  "login": {
+    "user": "Usuario",
+    "password": "Contrasinal",
+    "enter": "Entrar"
+  },
+  "administration": {
+    "title": "Administración"
+  },
+  "menu": {
+    "profiles": "Perfiles",
+    "sections": "Seccións",
+    "users": "Usuarios",
+    "logout": "Pechar sesión"
+  },
+  "language": {
+    "spanish": "Castelán",
+    "galician": "Galego",
+    "english": "Inglés"
+  },
+  "EN": "Inglés",
+  "ES": "Castelán",
+  "GL": "Galego",
+  "USER_NOT_EXISTS": "O usuario non existe na base de datos",
+  "CLOSE": "PECHAR"
 }
