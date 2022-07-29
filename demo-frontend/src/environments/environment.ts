@@ -5,13 +5,16 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:9999' ,
-  authBaseUrl: 'http://localhost:9999/auth',
+  authBaseUrl: 'http://localhost:9999',
   adminBaseUrl: 'http://localhost:9999',
   usersBaseUrl: 'http://localhost:9999/users',
   loginBaseUrl: 'http://localhost:9999/login',
   profilesBaseUrl: 'http://localhost:9999/profiles',
-  clientName: 'firma',
+  clientName: 'demo',
   clientSecret: '8Fjkk59bXKws8bmMNFZB',
+  idle: 1,
+  idleTimeout: 900,
+  idlePingInterval: 15
 };
 
 /*

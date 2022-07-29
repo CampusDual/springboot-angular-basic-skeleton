@@ -14,3 +14,12 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
+
+# oauth2 configuration  
+security:
+  oauth2:
+    client:
+      client-id: demo
+      client-secret: 8Fjkk59bXKws8bmMNFZB
+      authorized-grant-types: password,authorization_code,refresh_code,implicit
+      scope: openid

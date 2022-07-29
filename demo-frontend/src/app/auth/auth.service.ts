@@ -4,7 +4,7 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { API_CONFIG } from '../shared/api.config';
-import * as moment from "moment";
+// import * as moment from "moment";
 import { RESTResponse } from '../model/rest/response';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TranslateService } from '@ngx-translate/core';
@@ -64,30 +64,31 @@ export class AuthService {
   }
 
   private setSession(authResult) {
-    const expiresIn = moment().add(authResult.expires_in, 'second');
+    // const expiresIn = moment().add(authResult.expires_in, 'second');
 
     localStorage.setItem('access_token', authResult.access_token);
-    localStorage.setItem("expires_in", JSON.stringify(expiresIn.valueOf()));
+    // localStorage.setItem("expires_in", JSON.stringify(expiresIn.valueOf()));
   }
 
   logout() {
     localStorage.removeItem("access_token");
-    localStorage.removeItem("expires_in");
+    // localStorage.removeItem("expires_in");
   }
 
   public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+    // return moment().isBefore(this.getExpiration());
+    return localStorage.getItem("access_token")  !== null;
   }
 
   isLoggedOut() {
     return !this.isLoggedIn();
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_in");
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
-  }
+  // getExpiration() {
+  //   const expiration = localStorage.getItem("expires_in");
+  //   const expiresAt = JSON.parse(expiration);
+  //   return moment(expiresAt);
+  // }
 
   getToken() {
     return localStorage.getItem('access_token');

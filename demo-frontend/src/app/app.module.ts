@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { AuthService } from './auth/auth.service';
+import { MainModule } from './main/main.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthService } from './auth/auth.service';
     BrowserAnimationsModule,
     AuthModule,
     HttpClientModule,
+    MainModule,
     MatSnackBarModule,
     NgxSpinnerModule,
     NgIdleKeepaliveModule.forRoot(),

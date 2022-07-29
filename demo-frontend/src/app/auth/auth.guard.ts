@@ -14,7 +14,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
     const url: string = state.url;
-    const allowedRoles = next.data.allowedRoles;
+    const allowedRoles = next.data['allowedRoles'];
 
     return this.checkLogin(url, allowedRoles);
   }
