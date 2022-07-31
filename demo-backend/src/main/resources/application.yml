@@ -23,3 +23,9 @@ security:
       client-secret: 8Fjkk59bXKws8bmMNFZB
       authorized-grant-types: password,authorization_code,refresh_code,implicit
       scope: openid
+      
+demo:
+  oauth:
+    enabled: true
+    accessTokenValiditySeconds: 86400
+    refreshTokenValiditySeconds: 86400

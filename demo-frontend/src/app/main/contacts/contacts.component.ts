@@ -20,15 +20,23 @@ import { MatSnackBarComponent } from 'src/app/components/mat-snack-bar/mat-snack
 import { ContactDataSource } from '../../model/datasource/contacts.datasource';
 import { Contact } from '../../model/contact';
 import { ContactService } from '../../services/contact.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-contacts',
+  // selector: 'app-contacts',
   templateUrl: './contacts.component.html',
   styleUrls: ['./contacts.component.scss'],
 })
 export class ContactsComponent implements OnInit, AfterViewInit {
   dataSource: ContactDataSource;
-  displayedColumns = ['select', 'name', 'surname1', 'surname2', 'phone', 'email'];
+  displayedColumns = [
+    'select',
+    'name',
+    'surname1',
+    'surname2',
+    'phone',
+    'email',
+  ];
   fields = ['name', 'surname1', 'surname2', 'phone', 'email'];
 
   selection = new SelectionModel<Contact>(true, []);
@@ -45,7 +53,8 @@ export class ContactsComponent implements OnInit, AfterViewInit {
   constructor(
     private contactService: ContactService,
     private snackBar: MatSnackBarComponent,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -152,12 +161,14 @@ export class ContactsComponent implements OnInit, AfterViewInit {
   }
 
   onAdd() {
-    this.tabGroup.openTab('new', this.editTemplate, undefined, true);
+    // this.tabGroup.openTab('new', this.editTemplate, undefined, true);
+    this.router.navigate(['/contacts/add']);
   }
 
   onEdit(row: Contact) {
     this.highlightedRow = row;
-    this.tabGroup.openTab(row.name, this.editTemplate, row.id, true);
+    // this.tabGroup.openTab(row.name, this.editTemplate, row.id, true);
+    this.router.navigate(['/contacts/edit/' + row.id]);
   }
 
   onSaveDetails(responseTab: IResponseTab) {

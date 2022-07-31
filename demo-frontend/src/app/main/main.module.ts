@@ -45,14 +45,14 @@ import { LightboxModule } from 'ngx-lightbox';
 import { CoreModule } from '../core/core.module';
 import { ContactsComponent } from './contacts/contacts.component';
 import { FilterItemDirective } from './directives/filter-item.directive';
-import { CreateContactComponent } from './contacts/create-contact/create-contact.component';
+import { EditContactComponent } from './contacts/edit-contact/edit-contact.component';
 // import { ShowHidePasswordModule } from 'ngx-show-hide-password';
 
 @NgModule({
   declarations: [
     MainHomeComponent,
-    ContactsComponent,
-    CreateContactComponent,
+    // ContactsComponent,
+    // CreateContactComponent,
     // ProfilesComponent,
     // UsersComponent,
     // CreateUserComponent,

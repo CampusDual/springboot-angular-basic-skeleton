@@ -6,15 +6,10 @@ import { IResponseTab } from 'src/app/core/components/form-tabgroup/form-tabgrou
 import { RESTResponse } from 'src/app/model/rest/response';
 
 @Component({
-  selector: 'app-create-contact',
-  templateUrl: './create-contact.component.html',
-  styleUrls: ['./create-contact.component.scss']
+  templateUrl: './edit-contact.component.html',
+  styleUrls: ['./Edit-contact.component.scss']
 })
-export class CreateContactComponent implements OnInit {
-
-  @Input() idContact: number;
-  @Output() saveDetails = new EventEmitter<any>();
-  @Output() modifiedData = new EventEmitter<any>();
+export class EditContactComponent implements OnInit {
 
   contactForm: FormGroup;
   contact: Contact;
@@ -29,7 +24,6 @@ export class CreateContactComponent implements OnInit {
 
   onFormChanges() {
     this.contactForm.valueChanges.subscribe(val => {
-      this.modifiedData.emit();
     });
   }
 
@@ -64,12 +58,12 @@ export class CreateContactComponent implements OnInit {
   redirectList(response: RESTResponse<number>) {
     if (response.responseCode === 'OK') {
       const newContact: Contact = Object.assign({}, this.contactForm.value);
-      const responseTab: IResponseTab = {
-        data: newContact,
-        new: this.idContact !== null,
-        id: response.data
-      };
-      this.saveDetails.emit(responseTab);
+      // const responseTab: IResponseTab = {
+        // data: newContact,
+        // new: this.idContact !== null,
+        // id: response.data
+      // };
+      // this.saveDetails.emit(responseTab);
     }
   }
 
@@ -82,7 +76,7 @@ export class CreateContactComponent implements OnInit {
   }
 
   cancel() {
-    this.saveDetails.emit();
+    // this.saveDetails.emit();
   }
 
 }

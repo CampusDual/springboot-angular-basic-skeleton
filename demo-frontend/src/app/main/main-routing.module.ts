@@ -6,14 +6,17 @@ import { ContactsComponent } from './contacts/contacts.component';
 // import { ProfilesComponent } from './profiles/profiles.component';
 // import { UsersComponent } from './userCs/users.component';
 
+const contactsModule = () =>
+  import('./contacts/contacts.module').then((x) => x.ContactsModule);
+
 const routes: Routes = [
   {
     path: 'main',
     component: MainHomeComponent,
     canActivate: [AuthGuard],
     data: {
-      allowedRoles: ['PROFILES', 'USERS', 'CONTACTS']
-    }
+      allowedRoles: ['PROFILES', 'USERS', 'CONTACTS'],
+    },
   },
   // {
   //   path: 'profiles',
@@ -36,13 +39,13 @@ const routes: Routes = [
     component: ContactsComponent,
     canActivate: [AuthGuard],
     data: {
-      allowedRoles: ['CONTACTS']
-    }
+      allowedRoles: ['CONTACTS'],
+    },
   },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class MainRoutingModule { }
+export class MainRoutingModule {}

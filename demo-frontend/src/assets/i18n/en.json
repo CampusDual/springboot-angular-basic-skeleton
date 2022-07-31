@@ -19,10 +19,32 @@
     "galician": "Galician",
     "english": "English"
   },
+  "table": {
+    "contacts": {
+      "name": "Name",
+      "surname1": "First Surname",
+      "surname2": "Second Surname",
+      "phone": "Phone",
+      "email": "E-Mail"
+    }
+  },
+  "paginator": {
+    "first_page": "First page",
+    "last_page": "Last page",
+    "items_per_page": "Items per page",
+    "next_page": "Next page",
+    "previous_page": "Previous page",
+    "of": "of"
+  },
   "EN": "English",
   "ES": "Spanish",
   "GL": "Galician",
   "USER_NOT_EXISTS": "User not exists in the database",
   "WRONG_PASSWORD": "Wrong password",
-  "CLOSE": "CLOSE"
+  "TOKEN_EXPIRED": "Session expired",
+  "CLOSE": "CLOSE",
+  "filter": "Filter",
+  "new": "New",
+  "delete": "Delete",
+  "refresh": "Refresh"
 }

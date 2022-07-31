@@ -19,10 +19,31 @@
     "galician": "Galego",
     "english": "Inglés"
   },
+  "table": {
+    "contacts": {
+      "name": "Nome",
+      "surname1": "Primeiro apelido",
+      "surname2": "Segundo apelido",
+      "phone": "Teléfono",
+      "email": "E-Mail"
+    }
+  },
+  "paginator": {
+    "first_page": "Primeira páxina",
+    "last_page": "Última páxina",
+    "items_per_page": "Elementos por páxina",
+    "next_page": "Páxina seguinte",
+    "previous_page": "Páxina anterior",
+    "of": "de"
+  },
   "EN": "Inglés",
   "ES": "Castelán",
   "GL": "Galego",
   "USER_NOT_EXISTS": "O usuario non existe na base de datos",
   "WRONG_PASSWORD": "Contrasinal incorrecta",
-  "CLOSE": "PECHAR"
+  "CLOSE": "PECHAR",
+  "filter": "Filtro",
+  "new": "Novo",
+  "delete": "Eliminar",
+  "refresh": "Refrescar"
 }
