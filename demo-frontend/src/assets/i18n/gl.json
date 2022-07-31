@@ -41,6 +41,7 @@
   "GL": "Galego",
   "USER_NOT_EXISTS": "O usuario non existe na base de datos",
   "WRONG_PASSWORD": "Contrasinal incorrecta",
+  "TOKEN_EXPIRED": "A sesión expirou",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",

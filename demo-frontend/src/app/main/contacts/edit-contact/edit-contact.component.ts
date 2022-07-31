@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Contact } from 'src/app/model/contact';
 import { ContactService } from 'src/app/services/contact.service';
-import { IResponseTab } from 'src/app/core/components/form-tabgroup/form-tabgroup.component';
 import { RESTResponse } from 'src/app/model/rest/response';
 
 @Component({

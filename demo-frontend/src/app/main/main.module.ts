@@ -38,7 +38,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppComponent } from '../app.component';
 // import { FormTabComponent } from '../core/components/form-tab/form-tab.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormTabComponent } from '../core/components/form-tab/form-tab.component';
 // import { SignaturesComponent } from './signatures/signatures.component';
 // import { EventsComponent } from './events/events.component';
 import { LightboxModule } from 'ngx-lightbox';
@@ -96,6 +95,5 @@ import { EditContactComponent } from './contacts/edit-contact/edit-contact.compo
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, DatePipe],
-  entryComponents: [FormTabComponent],
 })
 export class MainModule {}
