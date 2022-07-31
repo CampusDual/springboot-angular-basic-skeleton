@@ -38,8 +38,8 @@ public abstract class AbstractDemoService {
 		if (StringUtils.isBlank(createContactRequest.getSurname1())) {
 			throw new DemoException(ContactError.SURNAME1_REQUIRED.toString());
 		}
-		if (StringUtils.isBlank(createContactRequest.getEmail())) {
-			throw new DemoException(ContactError.EMAIL_REQUIRED.toString());
+		if (createContactRequest.getPhone() == null) {
+			throw new DemoException(ContactError.PHONE_REQUIRED.toString());
 		}
 	}
 

@@ -132,58 +132,26 @@ export class ContactsComponent implements OnInit, AfterViewInit {
       this.contactService.deleteContact(contact.id).subscribe((response) => {
         if (response.responseCode !== 'OK') {
           this.error = true;
+        } else {
+          this.loadContactsPage();
         }
-        // this.tabGroup.closeTabByDataContext(contact.id).subscribe(() => {
-        //   if (this.error) {
-        //     this.snackBar.openSnackBar(
-        //       this.translate.instant('one-or-more-elements-not-deleted'),
-        //       this.translate.instant('CLOSE'),
-        //       'yellow-snackbar'
-        //     );
-        //   }
-        //   this.loadContactsPage();
-        // });
       });
     } else {
       this.contactService.deleteContact(contact.id).subscribe((response) => {
         if (response.responseCode !== 'OK') {
           this.error = true;
         }
-        // this.tabGroup.closeTabByDataContext(contact.id);
         this.delete();
       });
     }
   }
 
   onAdd() {
-    // this.tabGroup.openTab('new', this.editTemplate, undefined, true);
     this.router.navigate(['/contacts/add']);
   }
 
   onEdit(row: Contact) {
     this.highlightedRow = row;
-    // this.tabGroup.openTab(row.name, this.editTemplate, row.id, true);
     this.router.navigate(['/contacts/edit/' + row.id]);
   }
-
-  // onSaveDetails(responseTab: IResponseTab) {
-  //   if (responseTab) {
-  //     this.tabGroup.getActiveTab().cancel = false;
-  //   }
-  //   this.tabGroup.closeActiveTab().subscribe((response) => {
-  //     if (response) {
-  //       if (responseTab) {
-  //         this.loadContactsPage();
-  //       }
-  //       if (responseTab && responseTab.new) {
-  //         this.highlightedRow = new Contact();
-  //         this.highlightedRow.id = responseTab.id;
-  //       }
-  //     }
-  //   });
-  // }
-
-  // onModifiedData() {
-  //   this.tabGroup.onModifiedData();
-  // }
 }

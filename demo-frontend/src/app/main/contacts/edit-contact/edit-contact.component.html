@@ -3,7 +3,7 @@
     <div class="input-row">
       <mat-card fxFlex>
         <mat-card-header>
-          <mat-card-title>{{ 'form.basic-information' | translate }}</mat-card-title>
+          <mat-card-title>{{ 'form.contact' | translate }}</mat-card-title>
         </mat-card-header>
         <mat-card-content>
           <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
@@ -11,6 +11,8 @@
               <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.name' | translate }}"
                 formControlName="name" name="contact-name" required/>
             </mat-form-field>
+          </div>
+          <div class="input-row">
             <mat-form-field fxFlex>
               <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.surname1' | translate }}"
                 formControlName="surname1" name="contact-surname1" required/>
@@ -19,6 +21,8 @@
               <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.surname2' | translate }}"
                 formControlName="surname2" name="contact-surname2"/>
             </mat-form-field>
+          </div>
+          <div class="input-row">
             <mat-form-field fxFlex>
               <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.phone' | translate }}"
                 formControlName="phone" name="contact-phone"/>
@@ -31,12 +35,12 @@
         </mat-card-content>
       </mat-card>
     </div>
-  </div>
 
-  <div fxLayoutGap="20px" fxLayoutAlign="center center">
-    <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
+    <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
+      <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
       [formNoValidate]="true">{{ 'button.cancel' | translate }}</button>
-    <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit" color="primary"
+      <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit" color="primary"
       [disabled]="!contactForm.valid">{{ 'button.save' | translate }}</button>
+    </div>
   </div>
 </form>

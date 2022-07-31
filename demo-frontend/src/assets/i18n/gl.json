@@ -28,6 +28,13 @@
       "email": "E-Mail"
     }
   },
+  "form": {
+    "contact": "Contacto"
+  },
+  "button": {
+    "cancel": "Cancelar",
+    "save": "Gardar"
+  },
   "paginator": {
     "first_page": "Primeira páxina",
     "last_page": "Última páxina",
@@ -42,6 +49,8 @@
   "USER_NOT_EXISTS": "O usuario non existe na base de datos",
   "WRONG_PASSWORD": "Contrasinal incorrecta",
   "TOKEN_EXPIRED": "A sesión expirou",
+  "CONTACT_CREATE_SUCCESS": "Contacto creado",
+  "CONTACT_DELETE_SUCCESS": "Contacto borrado",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",

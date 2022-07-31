@@ -28,6 +28,13 @@
       "email": "E-Mail"
     }
   },
+  "form": {
+    "contact": "Contact"
+  },
+  "button": {
+    "cancel": "Cancel",
+    "save": "Save"
+  },
   "paginator": {
     "first_page": "First page",
     "last_page": "Last page",
@@ -42,6 +49,8 @@
   "USER_NOT_EXISTS": "User not exists in the database",
   "WRONG_PASSWORD": "Wrong password",
   "TOKEN_EXPIRED": "Session expired",
+  "CONTACT_CREATE_SUCCESS": "Contact created",
+  "CONTACT_DELETE_SUCCESS": "Contact deleted",
   "CLOSE": "CLOSE",
   "filter": "Filter",
   "new": "New",
