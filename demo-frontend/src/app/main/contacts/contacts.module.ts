@@ -34,7 +34,7 @@ import { ContactsLayoutComponent } from './contacts-layout.component';
         ContactsRoutingModule,
         MatFormFieldModule,
         MatInputModule,
-        // MatButtonModule,
+        MatButtonModule,
         // MatSelectModule,
         MatIconModule,
         // MatTabsModule,

@@ -1,4 +1,61 @@
 /* You can add global styles to this file, and also import other style files */
+@import "themes/main.theme";
+@import '~@angular/material/theming';
+@import url('//fonts.googleapis.com/icon?family=Material+Icons');
+
+@import "globals";
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+$primary: mat-palette($mat-grey, 900);
+$accent:  mat-palette($mat-grey, 600);
+$warn:    mat-palette($mat-red, 500);
+$theme: mat-light-theme($primary, $accent, $warn);
+@include angular-material-theme($theme);
+
+.yellow-snackbar {
+  color: rgb(248, 219, 87);
+  font-weight: bold;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+.blue-snackbar {
+  color: rgb(129, 188, 255);
+  font-weight: bold;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+.red-snackbar {
+  color: rgb(248, 134, 155);
+  font-weight: bold;
+  .mat-simple-snackbar-action {
+    color: white !important;
+  }
+}
+
+.header {
+  position: relative;
+}
+
+.btn-toggle {
+  width: 24px !important;
+}
+
+.mat-menu-item-highlighted:not([disabled]),
+.mat-menu-item.cdk-keyboard-focused:not([disabled]),
+.mat-menu-item.cdk-program-focused:not([disabled]),
+.mat-menu-item:hover:not([disabled]) {
+  background: #fff;
+}
+
+.menu-title {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.menu-title:active {
+  color: #ff3d00;
+}

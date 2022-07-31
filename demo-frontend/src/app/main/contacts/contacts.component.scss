@@ -1,0 +1,12 @@
+.upper-menu {
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  max-height: 100%;
+  place-content: space-between;
+  align-items: center;
+}
+
+button {
+  margin-right: 10px;
+}

@@ -1,0 +1,380 @@
+// https://material.angular.io/guide/theming
+// https://material.angular.io/guide/theming-your-components
+
+// https://github.com/Teradata/covalent/blob/develop/src/theme.scss
+
+@import '~@angular/material/theming';
+
+@import "./material.icons";
+
+// https://material.angular.io/guide/typography
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Open Sans, sans-serif'
+);
+
+@include mat-core($custom-typography);
+// @include mat-toolbar-typography($custom-toolbar-typography);
+
+// https://material.io/design/color/the-color-system.html
+// https://github.com/angular/material2/blob/master/src/lib/core/theming/_palette.scss
+
+@import "./mat-variables";
+@import "./variables";
+@import "./palette";
+@import "./demo.theme";
+
+$primary: mat-palette($mat-black, 900);
+$accent:  mat-palette($mat-deep-orange, 500, A100, A400);
+$warn:    mat-palette($mat-red, 600);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+@include angular-material-theme($theme);
+
+// https://material.angular.io/guide/theming-your-components
+
+// top, right, bottom, and left
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.page-content {
+  margin-top: $mat-toolbar-height-desktop;
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile;
+  }
+  padding: 15px;
+}
+
+#app-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+}
+
+.list-item-active {
+  font-weight: bold;
+  color: mat-color($accent, darker) !important;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.row-link:hover {
+  background-color: rgba(0, 0, 0, .1);
+  cursor: pointer;
+}
+
+.row-link:focus {
+  outline: none;
+}
+
+td.mat-cell {
+  border-bottom-style: none !important;
+}
+
+th.mat-header-cell {
+  border-bottom-style: none !important;
+}
+
+.table-header-button {
+  margin: 0 8px !important;
+}
+
+.app-navigation-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 998;
+}
+
+.app-command-bar {
+  position: fixed;
+  top: $mat-toolbar-height-desktop;
+  left: 0;
+  right: 0;
+  z-index: 997;
+  height: $app-command-bar-height-desktop !important;
+  min-height: $app-command-bar-height-desktop !important;
+
+  @media ($mat-xsmall) {
+    top: $mat-toolbar-height-mobile;
+    height: $app-command-bar-height-mobile !important;
+    min-height: $app-command-bar-height-mobile !important;
+  }
+
+  background-color: #f5f5f5;
+
+}
+
+$command-bar-sidenav-width: 160px; // card layout
+
+.app-command-bar-sidenav {
+  margin-top: $mat-toolbar-height-desktop + $app-command-bar-height-desktop;
+  width: $command-bar-sidenav-width !important;
+
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $app-command-bar-height-mobile;
+  }
+}
+
+.app-activity-bar {
+  height: $app-activity-bar-height-desktop !important;
+  min-height: $app-activity-bar-height-desktop !important;
+
+  margin-top: $mat-toolbar-height-desktop + $app-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $app-activity-bar-height-mobile !important;
+    min-height: $app-activity-bar-height-mobile !important;
+
+    margin-top: $mat-toolbar-height-mobile + $app-command-bar-height-mobile;
+  }
+
+  background-color: transparent;
+
+}
+
+//
+// https://material.angular.io/guide/customizing-component-styles
+//
+
+.app-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 140px);
+  }
+
+}
+
+.app-component-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: $app-view-bar-height-desktop;
+  min-height: $app-view-bar-height-desktop;
+
+  margin-top: $mat-toolbar-height-desktop + $app-command-bar-height-desktop;
+
+  @media ($mat-xsmall) {
+    height: $app-view-bar-height-mobile;
+    min-height: $app-view-bar-height-mobile;
+
+    margin-top: $mat-toolbar-height-mobile + $app-command-bar-height-mobile;
+  }
+
+}
+
+.app-component-title {
+  margin: 0;
+}
+
+.app-content-container {
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 140px);
+  }
+}
+
+$table-margin-desktop: 32px;
+$table-margin-mobile: 0;
+
+.app-table-container {
+  height: calc(100vh - 248px);
+
+  margin-left: $table-margin-desktop;
+  margin-right: $table-margin-desktop;
+  overflow: auto;
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 140px);
+
+    margin-left: $table-margin-mobile;
+    margin-right: $table-margin-mobile;
+  }
+}
+
+.app-table {
+  width: 100%;
+}
+
+.app-dashboard-container {
+  height: calc(100vh - 216px);
+  width: 100%;
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 140px);
+  }
+}
+
+:fullscreen .app-navigation-bar {
+  display: none;
+}
+
+:fullscreen .app-command-bar {
+  display: none;
+}
+
+:fullscreen .app-activity-bar {
+  display: none;
+}
+
+:fullscreen .app-component-title-container {
+  margin-top: 0;
+}
+
+:fullscreen .app-dashboard-container {
+  height: calc(100vh - 96px);
+}
+
+$task-list-width: 320px; // 240px;
+
+.app-activities-container {
+  display: grid;
+  grid-template-columns: $task-list-width auto;
+  column-gap: 32px;
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+}
+
+.app-task-list-container {
+  border: 1px solid lightgray;
+}
+
+.app-task-container {
+  background: white;
+  border: 1px solid lightgray;
+  padding-top: 0;
+  margin-top: 0;
+  height: calc(100vh - 256px);
+
+  @media ($mat-xsmall) {
+    height: calc(100vh - 200px);
+  }
+
+}
+
+.app-task-list-icon {
+  margin: 0;
+  padding: 0;
+}
+
+.app-grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 32px;
+  row-gap: 1em;
+
+  margin-top: 0;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  margin-right: 32px;
+}
+
+.app-snack-bar {
+  text-align: center;
+}
+
+//
+// Dynamic Reactive Forms
+//
+
+.app-prefix-icon {
+  cursor: pointer;
+}
+
+.app-suffix-icon {
+  cursor: pointer;
+}
+
+.app-nested-grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 16px;
+  row-gap: 1em;
+}
+
+.grid-column-1 {
+  grid-column: 1;
+}
+
+.grid-column-1-span-2 {
+  grid-column: 1 / span 2;
+}
+
+.grid-column-2 {
+  grid-column: 2;
+}
+
+.grid-column-2-span-2 {
+  grid-column: 2 / span 2;
+  // min-width: 180px;
+}
+
+.grid-column-3 {
+  grid-column: 3;
+}
+
+.grid-column-4 {
+  grid-column: 4;
+}
+
+.grid-row-2 {
+  grid-row: 2;
+}
+
+//
+// Library elements
+//
+
+.lib-component-title {
+  margin-top: $mat-toolbar-height-desktop + $app-command-bar-height-desktop + $app-component-title-margin;
+  @media ($mat-xsmall) {
+    margin-top: $mat-toolbar-height-mobile + $app-command-bar-height-mobile + $app-component-title-margin;
+  }
+  margin-bottom: $app-component-title-margin;
+  text-align: center;
+}
+
+.mat-header-row {
+  background-color: #f5f5f5;
+}
+
+.mat-footer-row {
+  background-color: #f5f5f5;
+}
+
+a:active {
+  font-weight: bold;
+  color: mat-color($accent, darker) !important;
+}
+
+.active {
+  font-weight: bold;
+  color: mat-color($accent, darker) !important;
+}
+
+.anchor {
+  color: #488aff;
+  cursor: pointer;
+}

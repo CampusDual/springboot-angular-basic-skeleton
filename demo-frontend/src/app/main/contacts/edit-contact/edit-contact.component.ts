@@ -3,17 +3,21 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Contact } from 'src/app/model/contact';
 import { ContactService } from 'src/app/services/contact.service';
 import { RESTResponse } from 'src/app/model/rest/response';
+import { Route, Router } from '@angular/router';
 
 @Component({
   templateUrl: './edit-contact.component.html',
-  styleUrls: ['./Edit-contact.component.scss']
+  styleUrls: ['./Edit-contact.component.scss'],
 })
 export class EditContactComponent implements OnInit {
-
   contactForm: FormGroup;
   contact: Contact;
 
-  constructor(private fb: FormBuilder, private contactService: ContactService) {
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService,
+    private router: Router
+  ) {
     this.contact = new Contact();
   }
 
@@ -22,8 +26,7 @@ export class EditContactComponent implements OnInit {
   }
 
   onFormChanges() {
-    this.contactForm.valueChanges.subscribe(val => {
-    });
+    this.contactForm.valueChanges.subscribe((val) => {});
   }
 
   createFormGroup() {
@@ -40,17 +43,13 @@ export class EditContactComponent implements OnInit {
   save() {
     const newContact: Contact = Object.assign({}, this.contactForm.value);
     if (newContact.id) {
-      this.contactService.editContact(newContact).subscribe(
-        response => {
-          this.redirectList(response);
-        }
-      );
+      this.contactService.editContact(newContact).subscribe((response) => {
+        this.redirectList(response);
+      });
     } else {
-      this.contactService.createContact(newContact).subscribe(
-        response => {
-          this.redirectList(response);
-        }
-      );
+      this.contactService.createContact(newContact).subscribe((response) => {
+        this.redirectList(response);
+      });
     }
   }
 
@@ -58,9 +57,9 @@ export class EditContactComponent implements OnInit {
     if (response.responseCode === 'OK') {
       const newContact: Contact = Object.assign({}, this.contactForm.value);
       // const responseTab: IResponseTab = {
-        // data: newContact,
-        // new: this.idContact !== null,
-        // id: response.data
+      // data: newContact,
+      // new: this.idContact !== null,
+      // id: response.data
       // };
       // this.saveDetails.emit(responseTab);
     }
@@ -76,6 +75,6 @@ export class EditContactComponent implements OnInit {
 
   cancel() {
     // this.saveDetails.emit();
+    this.router.navigate(['/contacts']);
   }
-
 }

@@ -1,0 +1,57 @@
+.w-full {
+  width: 100%;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.pt-5 {
+  padding-top: 5px;
+}
+
+.p-5 {
+  padding: 5px;
+}
+
+.my-5 {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.flex-auto {
+  flex: auto;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.h-auto {
+  height: auto !important;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.mat-header-cell.compact,
+.mat-cell.compact {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 55px;
+}
+
+.k-justify-content-center .mat-chip-list-wrapper {
+  -webkit-box-pack: center;
+  justify-content: center;
+}
+
+.k-justify-content-end .mat-chip-list-wrapper {
+  -webkit-box-pack: end;
+  justify-content: end;
+}
