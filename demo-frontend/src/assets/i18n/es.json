@@ -8,10 +8,8 @@
     "title": "Demo"
   },
   "menu": {
-    "profiles": "Perfiles",
-    "sections": "Secciones",
+    "home": "Home",
     "contacts": "Contactos",
-    "users": "Usuarios",
     "logout": "Cerrar sesión"
   },
   "language": {

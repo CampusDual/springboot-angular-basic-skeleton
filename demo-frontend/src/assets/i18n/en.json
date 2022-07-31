@@ -8,10 +8,8 @@
     "title": "Demo"
   },
   "menu": {
-    "profiles": "Profiles",
-    "sections": "Sections",
+    "home": "Home",
     "contacts": "Contacts",
-    "users": "Users",
     "logout": "Logout"
   },
   "language": {

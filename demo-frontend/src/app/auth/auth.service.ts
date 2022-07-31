@@ -11,24 +11,29 @@ import { MatSnackBarComponent } from '../components/mat-snack-bar/mat-snack-bar.
 export const TOKEN_NAME: string = 'jwt_token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router, private jwtHelper: JwtHelperService,
-    private snackBar: MatSnackBarComponent, private translateService: TranslateService) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private jwtHelper: JwtHelperService,
+    private translateService: TranslateService
+  ) {}
 
   redirectUrl: string;
 
   public login(user: string, password: string): Observable<any> {
-
     let _innerObserver: any;
     const dataObservable = new Observable(
-      observer => (_innerObserver = observer)
+      (observer) => (_innerObserver = observer)
     );
 
     const headers = new HttpHeaders({
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
-      Authorization: 'Basic ' + btoa(`${environment.clientName}:${environment.clientSecret}`),
+      Authorization:
+        'Basic ' +
+        btoa(`${environment.clientName}:${environment.clientSecret}`),
     });
 
     const urlGrantTypeParams = new URLSearchParams();
@@ -56,11 +61,11 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("access_token");
+    localStorage.removeItem('access_token');
   }
 
   public isLoggedIn() {
-    return localStorage.getItem("access_token")  !== null;
+    return localStorage.getItem('access_token') !== null;
   }
 
   isLoggedOut() {
@@ -84,7 +89,10 @@ export class AuthService {
     this.router.navigateByUrl('/login');
     localStorage.setItem('close_session', '1');
     localStorage.setItem('expired_session_message', 'true');
-    localStorage.setItem('close_session_language', this.translateService.currentLang);
+    localStorage.setItem(
+      'close_session_language',
+      this.translateService.currentLang
+    );
     setTimeout(() => {
       window.location.reload();
     }, 100);
