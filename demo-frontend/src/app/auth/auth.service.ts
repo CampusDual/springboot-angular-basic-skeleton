@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { API_CONFIG } from '../shared/api.config';
-// import * as moment from "moment";
-import { RESTResponse } from '../model/rest/response';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBarComponent } from '../components/mat-snack-bar/mat-snack-bar.component';
@@ -40,55 +38,34 @@ export class AuthService {
     const body = urlGrantTypeParams.toString();
 
     const url = API_CONFIG.login;
-    this.canLogin(user).subscribe(responseCanLogin => {
-      if (responseCanLogin.responseCode === 'OK') {
-        this.http.post(url, body, { headers }).subscribe((response: any) => {
-          this.setSession(response);
-          _innerObserver.next(response.access_token);
-        }, err => {
-          _innerObserver.error(err);
-        });
+    this.http.post(url, body, { headers }).subscribe(
+      (response: any) => {
+        this.setSession(response);
+        _innerObserver.next(response.access_token);
+      },
+      (err) => {
+        _innerObserver.error(err);
       }
-    });
+    );
 
     return dataObservable;
   }
 
-  canLogin(user: string): Observable<RESTResponse<boolean>> {
-    const url = API_CONFIG.canLogin;
-    const headers = new HttpHeaders({
-      'Content-type': 'charset=utf-8'
-    });
-    const params = new HttpParams().set('user', user);
-    return this.http.get<RESTResponse<boolean>>(url, { params, headers });
-  }
-
   private setSession(authResult) {
-    // const expiresIn = moment().add(authResult.expires_in, 'second');
-
     localStorage.setItem('access_token', authResult.access_token);
-    // localStorage.setItem("expires_in", JSON.stringify(expiresIn.valueOf()));
   }
 
   logout() {
     localStorage.removeItem("access_token");
-    // localStorage.removeItem("expires_in");
   }
 
   public isLoggedIn() {
-    // return moment().isBefore(this.getExpiration());
     return localStorage.getItem("access_token")  !== null;
   }
 
   isLoggedOut() {
     return !this.isLoggedIn();
   }
-
-  // getExpiration() {
-  //   const expiration = localStorage.getItem("expires_in");
-  //   const expiresAt = JSON.parse(expiration);
-  //   return moment(expiresAt);
-  // }
 
   getToken() {
     return localStorage.getItem('access_token');

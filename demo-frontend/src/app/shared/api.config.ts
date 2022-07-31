@@ -4,7 +4,6 @@ export const API_CONFIG = {
   authUrl: environment.authBaseUrl,
   login: environment.authBaseUrl + '/oauth/token',
   logout: environment.authBaseUrl + '/logout',
-  canLogin: environment.loginBaseUrl + '/canLogin',
   getAllProfiles: environment.adminBaseUrl + '/getAllProfiles',
   getAllSections: environment.adminBaseUrl + '/getAllSections',
 
