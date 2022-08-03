@@ -21,6 +21,7 @@
 - Revisar tanto en front como en back el uso de cosillas deprecadas e ir cambiandolo
 - Que no de ningun warning ni errores de sonarlint, para dar un modelo de codigo lo mas limpio posible
 - Arreglar pantalla de login para que el fondo llene todo y no solo el cacho que se ve ahora
+- Podriamos quitar la vista de contactos y mostrar la de usuarios, ya que al final tiene como mas sentido, puesto que siempre se gestionarán usuarios. Si da tiempo y se puede hacer, mejor, si no, no pasa nada.
 
 ## Notas
 
