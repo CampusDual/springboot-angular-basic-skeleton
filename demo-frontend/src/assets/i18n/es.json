@@ -4,6 +4,9 @@
     "password": "Contraseña",
     "enter": "Entrar"
   },
+  "item": {
+    "title": "Titulo"
+  },
   "demo": {
     "title": "Demo"
   },
@@ -49,9 +52,16 @@
   "TOKEN_EXPIRED": "La sesión expiró",
   "CONTACT_CREATE_SUCCESS": "Contacto creado",
   "CONTACT_DELETE_SUCCESS": "Contacto borrado",
+  "PHONE_ALREADY_EXISTS": "El teléfono ya existe",
+  "UNKNOWN_ERROR": "Error desconocido",
+  "SESSION_EXPIRED": "Sesión expirada",
   "CLOSE": "CERRAR",
   "filter": "Filtro",
   "new": "Nuevo",
   "delete": "Eliminar",
-  "refresh": "Refrescar"
+  "refresh": "Refrescar",
+  "loading": "Cargando",
+  "no": "No",
+  "yes": "Si",
+  "delete-element-confirmation": "¿Está seguro de que quiere continuar? Todos los elementos seleccionados se eliminarán"
 }

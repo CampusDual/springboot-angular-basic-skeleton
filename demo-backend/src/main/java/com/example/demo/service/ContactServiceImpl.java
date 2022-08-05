@@ -71,11 +71,17 @@ public class ContactServiceImpl extends AbstractDemoService implements ContactSe
 		try {
 			checkInputParams(createContactRequest);
 			Contact newContact = contactRepository.save(fromCreateContactRequest(createContactRequest));
-//			contactRepository.flush();
 			return new RESTResponse<>(Code.OK, ContactMessages.CONTACT_CREATE_SUCCESS.toString(), newContact.getId());
 		} catch (DataIntegrityViolationException e) {
-			if (e.getMessage().contains("contacts_unique")) {
-				throw new DemoException(ContactError.CONTACT_ALREADY_EXISTS.toString());
+			if (e.getMessage() != null) {
+				if (e.getMessage().contains("contacts_unique")) {
+					throw new DemoException(ContactError.CONTACT_ALREADY_EXISTS.toString());
+				}
+				if (e.getMessage().contains("contacts_phone_key") && e.getMessage().contains("ConstraintViolationException")) {
+					throw new DemoException(ContactError.PHONE_ALREADY_EXISTS.toString());
+				} else {
+					throw new DemoException(ContactError.UNKNOWN_ERROR.toString());
+				}
 			}
 			throw new DemoException(e.getMessage());
 		}
@@ -90,7 +96,6 @@ public class ContactServiceImpl extends AbstractDemoService implements ContactSe
 		try {
 			checkInputParams(editContactRequest);
 			Contact editContact = contactRepository.save(fromEditContactRequest(editContactRequest));
-//			contactRepository.flush();
 			return new RESTResponse<>(Code.OK, ContactMessages.CONTACT_EDIT_SUCCESS.toString(), editContact.getId());
 		} catch (DataIntegrityViolationException e) {
 			throw new DemoException(CommonError.ID_NOT_EXISTS.toString());
@@ -105,7 +110,6 @@ public class ContactServiceImpl extends AbstractDemoService implements ContactSe
 	public RESTResponse<Integer> deleteContact(Integer id) {
 		try {
 			contactRepository.deleteById(id);
-//			contactRepository.flush();
 			return new RESTResponse<>(Code.OK, ContactMessages.CONTACT_DELETE_SUCCESS.toString(), id);
 		} catch (EmptyResultDataAccessException e) {
 			if (e.getCause() instanceof ConstraintViolationException) {

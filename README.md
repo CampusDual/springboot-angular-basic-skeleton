@@ -16,12 +16,13 @@
 ## TODO:
 
 - Falta por maquetar bien los botones del formulario de anadir/editar contacto
-- Añadir un breadcrumb de navegacion aprovechando el sistema de routing
 - Insertar traducciones que vayan faltando
+- Crear algun ejemplo de inputs especificos. Por ejemplo, uno que valide telefonos o emails, de manera que, por ejemplo, pasando al input un parametro como type='telf' o algo asi, que sea una extension de input, pero llamando a un metodo que valide el email y controle que lleva @, el punto del dominio... La idea es que sirva de ejemplo para que luego en las formaciones puedan crear los suyos propios cuando lo necesiten, complicando mas la validacion del telf, email, nif, etc. Ontimize Web proporciona este tipo de campos, por lo que sería hacer algo similar en medida de lo posible (complicandonos poco, un ejemplo básico): https://try.imatia.com/ontimizeweb/v8/playground/main/inputs/email
+- Podriamos quitar la vista de contactos y mostrar la de usuarios, ya que al final tiene como mas sentido, puesto que siempre se gestionarán usuarios. Si da tiempo y se puede hacer, mejor, si no, no pasa nada.
+
 - Revisar tanto en front como en back el uso de cosillas deprecadas e ir cambiandolo
 - Que no de ningun warning ni errores de sonarlint, para dar un modelo de codigo lo mas limpio posible
 - Arreglar pantalla de login para que el fondo llene todo y no solo el cacho que se ve ahora
-- Podriamos quitar la vista de contactos y mostrar la de usuarios, ya que al final tiene como mas sentido, puesto que siempre se gestionarán usuarios. Si da tiempo y se puede hacer, mejor, si no, no pasa nada.
 
 ## Notas
 

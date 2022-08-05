@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { merge, fromEvent } from 'rxjs';
+import { merge, fromEvent, Observable, Observer } from 'rxjs';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AnyPageFilter, AnyField, SortFilter } from 'src/app/model/rest/filter';
@@ -17,6 +17,8 @@ import { ContactDataSource } from '../../model/datasource/contacts.datasource';
 import { Contact } from '../../model/contact';
 import { ContactService } from '../../services/contact.service';
 import { Router } from '@angular/router';
+import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   // selector: 'app-contacts',
@@ -47,9 +49,9 @@ export class ContactsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private contactService: ContactService,
-    private snackBar: MatSnackBarComponent,
     private translate: TranslateService,
-    private router: Router
+    private router: Router,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -123,6 +125,25 @@ export class ContactsComponent implements OnInit, AfterViewInit {
       : this.dataSource.contactsSubject.value.forEach((row) =>
           this.selection.select(row)
         );
+  }
+
+  onDelete() {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      width: '350px',
+      data: this.translate.instant('delete-element-confirmation'),
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.delete();
+        return new Observable((observer: Observer<boolean>) =>
+          observer.next(true)
+        );
+      } else {
+        return new Observable((observer: Observer<boolean>) =>
+          observer.next(false)
+        );
+      }
+    });
   }
 
   delete() {

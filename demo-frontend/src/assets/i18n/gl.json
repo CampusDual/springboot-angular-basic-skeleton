@@ -4,6 +4,9 @@
     "password": "Contrasinal",
     "enter": "Entrar"
   },
+  "item": {
+    "title": "Titulo"
+  },
   "demo": {
     "title": "Demo"
   },
@@ -49,9 +52,16 @@
   "TOKEN_EXPIRED": "A sesión expirou",
   "CONTACT_CREATE_SUCCESS": "Contacto creado",
   "CONTACT_DELETE_SUCCESS": "Contacto borrado",
+  "PHONE_ALREADY_EXISTS": "O teléfono xa existe",
+  "UNKNOWN_ERROR": "Erro descoñecido",
+  "SESSION_EXPIRED": "Sesión expirada",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",
   "delete": "Eliminar",
-  "refresh": "Refrescar"
+  "refresh": "Refrescar",
+  "loading": "Cargando",
+  "no": "Non",
+  "yes": "Si",
+  "delete-element-confirmation": "¿Está seguro de que quere continuar? Todos os elementos seleccionados eliminaranse"
 }

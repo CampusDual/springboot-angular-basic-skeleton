@@ -14,7 +14,7 @@
       <button
         mat-raised-button
         [disabled]="!selection.hasValue()"
-        (click)="delete()"
+        (click)="onDelete()"
       >
         <mat-icon>delete</mat-icon> {{ "delete" | translate }}
       </button>

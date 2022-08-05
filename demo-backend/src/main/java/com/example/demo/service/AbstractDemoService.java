@@ -41,6 +41,9 @@ public abstract class AbstractDemoService {
 		if (createContactRequest.getPhone() == null) {
 			throw new DemoException(ContactError.PHONE_REQUIRED.toString());
 		}
+		if (createContactRequest.getPhone() > 999999999) {
+			throw new DemoException(ContactError.PHONE_INVALID.toString());
+		}
 	}
 
 	protected void checkInputParams(EditContactRequest editContactRequest) {
