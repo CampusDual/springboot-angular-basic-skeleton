@@ -62,7 +62,7 @@ class ContactServiceTest {
 
 		// with mockito, we make that when the next methods (for example getContacts()
 		// that internally uses findAll) call findAll,
-		// the result will be this list insted the DB real one
+		// the result will be this list instead the DB real one
 		when(this.contactRepository.findAll(any(SpecificationImpl.class), isA(Pageable.class))).thenReturn(contacts);
 
 		// test
