@@ -25,11 +25,11 @@
           <div class="input-row">
             <mat-form-field fxFlex>
               <input matInput type="tel" color="primary" placeholder="{{ 'table.contacts.phone' | translate }}"
-                formControlName="phone" name="contact-phone" maxlength="9"/>
+                formControlName="phone" name="contact-phone"  pattern="^\d{9}$"/>
             </mat-form-field>
             <mat-form-field fxFlex>
               <input matInput type="email" color="primary" placeholder="{{ 'table.contacts.email' | translate }}"
-                formControlName="email" name="contact-email"/>
+                formControlName="email" name="contact-email" email/>
             </mat-form-field>
           </div>
         </mat-card-content>
