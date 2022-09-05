@@ -72,7 +72,6 @@ export class EditContactComponent implements OnInit {
 
   redirectList(response: RESTResponse<number>) {
     if (response.responseCode === 'OK') {
-      // const newContact: Contact = Object.assign({}, this.contactForm.value);
       this.router.navigate(['/contacts']);
     }
   }
@@ -86,7 +85,6 @@ export class EditContactComponent implements OnInit {
   }
 
   cancel() {
-    // this.saveDetails.emit();
     this.router.navigate(['/contacts']);
   }
 }
