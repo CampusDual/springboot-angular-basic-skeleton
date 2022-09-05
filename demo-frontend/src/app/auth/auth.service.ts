@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 import { API_CONFIG } from '../shared/api.config';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBarComponent } from '../components/mat-snack-bar/mat-snack-bar.component';
 
 export const TOKEN_NAME: string = 'jwt_token';
 

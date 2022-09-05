@@ -11,7 +11,6 @@ import {
 import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
-// import { BusyService } from './busy.service';
 import { Router } from '@angular/router';
 
 
@@ -22,12 +21,6 @@ export class InterceptService implements HttpInterceptor {
               private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // let timer: NodeJS.Timer;
-    // if(timer){
-    //   clearTimeout(timer);
-    // }
-
-    // timer = setTimeout(() => this.busyService.busy(), 200);
 
     return next.handle(request).pipe(
       tap(event => {
@@ -66,10 +59,6 @@ export class InterceptService implements HttpInterceptor {
           }
         }
       }), finalize(() => {
-        // this.busyService.idle();
-        // if(timer){
-        //   clearTimeout(timer);
-        // }
       })
     );
 

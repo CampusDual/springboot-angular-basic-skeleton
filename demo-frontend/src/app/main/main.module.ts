@@ -35,6 +35,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LightboxModule } from 'ngx-lightbox';
 import { CoreModule } from '../core/core.module';
 import { FilterItemDirective } from './directives/filter-item.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxChartsModule }from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { FilterItemDirective } from './directives/filter-item.directive';
     MatNativeDateModule,
     MatDatepickerModule,
     LightboxModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, DatePipe],

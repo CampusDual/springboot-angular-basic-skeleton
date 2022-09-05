@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnDestroy} from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { environment } from 'src/environments/environment';
 import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
@@ -14,6 +14,15 @@ export class MainHomeComponent {
   idleState = 'Not started.';
   timedOut = false;
   lastPing?: Date = null;
+
+  // Example array to be used by chart. This array should be returned by a backend method, with the necessary information
+  saleData = [
+    { name: "Enero", value: 105000 },
+    { name: "Febrero", value: 55000 },
+    { name: "Marzo", value: 15000 },
+    { name: "Abril", value: 150000 },
+    { name: "Mayo", value: 20000 }
+  ];
 
   constructor(private idle: Idle, private keepalive: Keepalive, private authService: AuthService) {
 

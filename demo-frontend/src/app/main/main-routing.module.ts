@@ -4,9 +4,6 @@ import { MainHomeComponent } from './main-home/main-home.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { ContactsComponent } from './contacts/contacts.component';
 
-const contactsModule = () =>
-  import('./contacts/contacts.module').then((x) => x.ContactsModule);
-
 const routes: Routes = [
   {
     path: 'main',
