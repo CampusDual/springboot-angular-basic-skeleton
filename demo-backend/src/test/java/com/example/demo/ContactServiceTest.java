@@ -26,6 +26,8 @@ import com.borjaglez.springify.repository.specification.SpecificationImpl;
 import com.example.demo.entity.Contact;
 import com.example.demo.exception.DemoException;
 import com.example.demo.repository.ContactRepository;
+import com.example.demo.rest.model.CreateContactRequest;
+import com.example.demo.rest.model.EditContactRequest;
 import com.example.demo.rest.response.ContactResponse;
 import com.example.demo.service.ContactServiceImpl;
 
@@ -87,6 +89,43 @@ class ContactServiceTest {
 		DemoException thrown = assertThrows(DemoException.class, () -> contactService.getContact(1));
 
 		assertEquals("ID_NOT_EXISTS", thrown.getMessage());
+	}
+
+	@Test
+	void addContactTest() {
+		CreateContactRequest createContactRequest = new CreateContactRequest("One", "Surname1One", "Surname2One",
+				666555444, "contact-one@gmail.com");
+		Contact contact = contactService.fromCreateContactRequest(createContactRequest);
+		contact.setId(1);
+
+		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
+
+		Integer newContactId = contactService.createContact(createContactRequest).getData();
+
+		assertNotNull(newContactId);
+		assertEquals(1, newContactId);
+	}
+
+	@Test
+	void editContactTest() {
+		EditContactRequest editContactRequest = new EditContactRequest(1, "OneEdit", "Surname1OneEdit", "Surname2OneEdit",
+				666555444, "contact-one-edit@gmail.com");
+		Contact contact = contactService.fromCreateContactRequest(editContactRequest);
+		contact.setId(1);
+		
+		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
+
+		Integer editContactId = contactService.editContact(editContactRequest).getData();
+
+		assertNotNull(editContactId);
+		assertEquals(1, editContactId);
+	}
+	
+	@Test
+	void deleteContactTest() {
+		Integer result = contactService.deleteContact(1).getData();
+
+		assertNotNull(result);
 	}
 
 }
