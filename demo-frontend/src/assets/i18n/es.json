@@ -63,5 +63,10 @@
   "loading": "Cargando",
   "no": "No",
   "yes": "Si",
-  "delete-element-confirmation": "¿Está seguro de que quiere continuar? Todos los elementos seleccionados se eliminarán"
+  "delete-element-confirmation": "¿Está seguro de que quiere continuar? Todos los elementos seleccionados se eliminarán",
+  "namerequired": "El nombre es un campo obligatorio",
+  "surname1required": "El apellido es un campo obligatorio",
+  "phonerequired":"El teléfono es un campo obligatorio",
+  "phonepatter": "El formato del teléfono no es correcto",
+  "emailpattern": "El formato del email no es correcto"
 }
