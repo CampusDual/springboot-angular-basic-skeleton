@@ -34,18 +34,13 @@
                   {{'phonerequired'| translate}}
                 </mat-error>
             </mat-form-field>
-            <div class="alert alert-danger"
-              *ngIf="contactForm.get('phone').hasError('pattern') && contactForm.get('phone').touched">
-              {{'phonepatter'| translate}}
-            </div>
             <mat-form-field fxFlex>
               <input matInput type="email" color="primary" placeholder="{{ 'table.contacts.email' | translate }}"
                 formControlName="email" name="contact-email" email />
+                <mat-error>
+                  {{'emailpattern'| translate}}
+                </mat-error>
             </mat-form-field>
-            <div class="alert alert-danger"
-              *ngIf="contactForm.get('email').hasError('pattern') && contactForm.get('email').touched">
-              {{'emailpattern'| translate}}
-            </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
