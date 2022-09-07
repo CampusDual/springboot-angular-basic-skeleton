@@ -67,6 +67,6 @@
   "namerequired": "Name is a required field",
   "surname1required": "Surname is a required field",
   "phonerequired":"Phone is a required field",
-  "phonepatter": "The phone format is not correct",
+  "phonepattern": "The phone format is not correct",
   "emailpattern": "The email format is not correct"
 }

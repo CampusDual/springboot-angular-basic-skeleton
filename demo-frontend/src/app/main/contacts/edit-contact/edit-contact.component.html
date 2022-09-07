@@ -30,13 +30,18 @@
             <mat-form-field fxFlex>
               <input matInput type="tel" color="primary" placeholder="{{ 'table.contacts.phone' | translate }}"
                 formControlName="phone" name="contact-phone" required />
-                <mat-error>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error *ngIf="contactForm.get('phone').hasError('required')">
                   {{'phonerequired'| translate}}
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('phone').hasError('pattern')">
+                  {{'phonepattern'| translate}}
                 </mat-error>
             </mat-form-field>
             <mat-form-field fxFlex>
               <input matInput type="email" color="primary" placeholder="{{ 'table.contacts.email' | translate }}"
                 formControlName="email" name="contact-email" email />
+                <mat-icon matSuffix>mail</mat-icon>
                 <mat-error>
                   {{'emailpattern'| translate}}
                 </mat-error>
