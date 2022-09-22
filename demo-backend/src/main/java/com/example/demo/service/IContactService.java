@@ -3,9 +3,10 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.entity.Contact;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 
 public interface IContactService {
 
@@ -26,7 +27,7 @@ public interface IContactService {
 	 *         independientemente de las mayúsculas.
 	 * @since 0.0.5
 	 */
-	Page<Contact> getContacts(Pageable pageFilter);
+	DataSourceRESTResponse<List<Contact>> getContacts(AnyPageFilter pageFilter);
 
 	/**
 	 * Crea un nuevo usuario en la BDD.

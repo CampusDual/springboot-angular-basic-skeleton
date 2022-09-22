@@ -12,14 +12,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,10 +29,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.entity.Contact;
+import com.example.demo.exception.DemoException;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IContactService;
 import com.example.demo.utils.Constant;
 
+@CrossOrigin(origins = {"http://localhost:4201"})
 @RestController
 @RequestMapping(ContactsController.REQUEST_MAPPING)
 public class ContactsController {
@@ -84,11 +87,19 @@ public class ContactsController {
 	 *         independientemente de las mayúsculas.
 	 * @since 0.0.5
 	 */
-	@GetMapping(path = "/getContacts/page/{page}")
+	@PostMapping(path = "/getContacts", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public Page<Contact> getContacts(@PathVariable Integer page) {
+	public @ResponseBody DataSourceRESTResponse<List<Contact>> getContacts(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("getContacts in progress...");
-		return contactService.getContacts(PageRequest.of(page, 4));
+		DataSourceRESTResponse<List<Contact>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = contactService.getContacts(pageFilter);
+		} catch (DemoException e) {
+			LOGGER.error(e.getMessage());
+			dres.setResponseMessage(e.getMessage());
+		} 
+		LOGGER.info("getContacts is finished...");
+		return dres;
 	}
 	
 	/**
@@ -154,20 +165,21 @@ public class ContactsController {
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
 	public ResponseEntity<?> editContact(@Valid @RequestBody Contact editContactRequest, BindingResult result, @PathVariable Integer id) {
 		LOGGER.info("editContact in progress...");
-		Contact customer = contactService.getContact(id);
+		Contact current = contactService.getContact(id);
 		Contact contactUpdate = null;
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
 		String message = Constant.CONTACT_EDIT_SUCCESS;
-		if(customer !=null) {	
+		if(current !=null) {	
 			if(!result.hasErrors()) {
 				try {
-					customer.setEmail(editContactRequest.getEmail());
-					customer.setName(editContactRequest.getName());
-					customer.setPhone(editContactRequest.getPhone());
-					customer.setSurname1(editContactRequest.getSurname1());
-					customer.setSurname2(editContactRequest.getSurname2());
-					contactUpdate = contactService.createContact(customer);
+					current.setEmail(editContactRequest.getEmail());
+					current.setName(editContactRequest.getName());
+					current.setPhone(editContactRequest.getPhone());
+					current.setSurname1(editContactRequest.getSurname1());
+					current.setSurname2(editContactRequest.getSurname2());
+					contactUpdate = contactService.createContact(current);
+					response.put("contact", contactUpdate);
 				}catch (DataAccessException e) {
 					message= Constant.DATABASE_QUERY_ERROR;
 					response.put(ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));

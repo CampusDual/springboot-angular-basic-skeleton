@@ -4,15 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
+import com.borjaglez.springify.repository.specification.SpecificationBuilder;
 import com.example.demo.entity.Contact;
 import com.example.demo.repository.ContactRepository;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 
 @Service
-public class ContactServiceImpl implements IContactService {
+public class ContactServiceImpl extends AbstractDemoService implements IContactService {
 
 	/**
 	 * Especificación JPA para {@link Contact}.
@@ -33,8 +35,14 @@ public class ContactServiceImpl implements IContactService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Contact> getContacts(Pageable pageFilter) {
-		return contactRepository.findAll(pageFilter);
+	public DataSourceRESTResponse<List<Contact>> getContacts(AnyPageFilter pageFilter) {
+		checkInputParams(pageFilter);
+		Page<Contact> contacts = SpecificationBuilder.selectDistinctFrom(contactRepository).where(pageFilter)
+				.findAll(pageFilter); 
+		DataSourceRESTResponse<List<Contact>> datares = new DataSourceRESTResponse<>();
+		datares.setTotalElements((int) contacts.getTotalElements());
+		datares.setData(contacts.getContent());
+		return datares;
 	}
 
 	/**

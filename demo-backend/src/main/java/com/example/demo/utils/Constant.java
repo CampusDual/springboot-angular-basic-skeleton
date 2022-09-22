@@ -47,5 +47,9 @@ public class Constant {
 	public static final String SIGNATURE_NOT_PENDING ="SIGNATURE_NOT_PENDING";
 	public static final String DATABASE_QUERY_ERROR ="DATABASE_QUERY_ERROR";
 	
+	//pagination error
+	public static final String PAGE_INDEX_REQUIRED ="PAGE_INDEX_REQUIRED";
+	public static final String PAGE_SIZE_REQUIRED ="PAGE_SIZE_REQUIRED";
+	
 
 }
