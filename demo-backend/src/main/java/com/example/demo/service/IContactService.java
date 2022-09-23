@@ -3,13 +3,10 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
-import com.example.demo.rest.model.CreateContactRequest;
-import com.example.demo.rest.model.EditContactRequest;
-import com.example.demo.rest.response.ContactResponse;
+import com.example.demo.entity.Contact;
 import com.example.demo.rest.response.DataSourceRESTResponse;
-import com.example.demo.rest.response.RESTResponse;
 
-public interface ContactService {
+public interface IContactService {
 
 	/**
 	 * Obtiene un usuario de BDD con el id indicado.
@@ -17,7 +14,7 @@ public interface ContactService {
 	 * @param id el id del usuario de la BDD.
 	 * @return el usuario cuyo id sea el pasado por parámetros.
 	 */
-	RESTResponse<ContactResponse> getContact(Integer id);
+	Contact getContact(Integer id);
 
 	/**
 	 * Devuelve los usuarios que alguno de sus campos contenga la 'query'
@@ -28,7 +25,7 @@ public interface ContactService {
 	 *         independientemente de las mayúsculas.
 	 * @since 0.0.5
 	 */
-	DataSourceRESTResponse<List<ContactResponse>> getContacts(AnyPageFilter pageFilter);
+	DataSourceRESTResponse<List<Contact>> getContacts(AnyPageFilter pageFilter);
 
 	/**
 	 * Crea un nuevo usuario en la BDD.
@@ -36,15 +33,7 @@ public interface ContactService {
 	 * @return el id del usuario creado.
 	 * @since 0.0.5
 	 */
-	RESTResponse<Integer> createContact(CreateContactRequest createContactRequest);
-
-	/**
-	 * Modifica un usuario en la BDD.
-	 * 
-	 * @return el id del usuario modificado.
-	 * @since 0.0.5
-	 */
-	RESTResponse<Integer> editContact(EditContactRequest editContactRequest);
+	Contact createContact(Contact createContactRequest);
 
 	/**
 	 * Elimina un usuario de la BDD.
@@ -52,5 +41,23 @@ public interface ContactService {
 	 * @return el id del usuario eliminado.
 	 * @since 0.0.5
 	 */
-	RESTResponse<Integer> deleteContact(Integer id);
+	Integer deleteContact(Integer id);
+	
+	/**
+	 * Devuelve todos los contactos que se encuentran en la tabla
+	 * 
+	 * @return usuarios que alguno de sus campos contenga la 'query'
+	 *         independientemente de las mayúsculas.
+	 * @since 0.0.5
+	 */
+	List<Contact> findAll();
+	
+	/**
+	 * Modifica un usuario en la BDD.
+	 * 
+	 * @return el id del usuario modificado.
+	 * @since 0.0.5
+	 */
+	Integer editContact(Contact editContactRequest);
+	
 }

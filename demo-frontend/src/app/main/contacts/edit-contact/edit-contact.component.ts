@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Contact } from 'src/app/model/contact';
 import { ContactService } from 'src/app/services/contact.service';
-import { RESTResponse } from 'src/app/model/rest/response';
-import { ActivatedRoute, Router } from '@angular/router';
+
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 
 @Component({
@@ -15,6 +15,7 @@ export class EditContactComponent implements OnInit {
 
   contactForm: FormGroup;
   contact: Contact;
+  errores: string[];
 
   constructor(
     private fb: FormBuilder,
@@ -32,7 +33,7 @@ export class EditContactComponent implements OnInit {
     if (this.idContact) {
       this.contactService.getContact(this.idContact).subscribe(
         response => {
-          this.contact = response.data;
+          this.contact = response;
           this.contactForm.patchValue(this.contact, { emitEvent: false, onlySelf: false });
           this.logger.info(this.contact);
         }
@@ -50,7 +51,7 @@ export class EditContactComponent implements OnInit {
     this.contactForm = this.fb.group({
       id: [this.contact.id],
       name: [this.contact.name, Validators.required],
-      surname1: [this.contact.surname1, Validators.required],
+      surname1: [this.contact.surname1],
       surname2: [this.contact.surname2],
       phone: [this.contact.phone, [Validators.required, Validators.pattern("^[0-9]{9}$")]],
       email: [this.contact.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
@@ -60,7 +61,7 @@ export class EditContactComponent implements OnInit {
   save() {
     const newContact: Contact = Object.assign({}, this.contactForm.value);
     if (newContact.id) {
-      this.contactService.editContact(newContact).subscribe((response) => {
+      this.contactService.editContact(newContact).subscribe((response) =>{
         this.redirectList(response);
       });
     } else {
@@ -70,9 +71,11 @@ export class EditContactComponent implements OnInit {
     }
   }
 
-  redirectList(response: RESTResponse<number>) {
+  redirectList(response: any) {
     if (response.responseCode === 'OK') {
       this.router.navigate(['/contacts']);
+    }else{
+      console.log(response);
     }
   }
 

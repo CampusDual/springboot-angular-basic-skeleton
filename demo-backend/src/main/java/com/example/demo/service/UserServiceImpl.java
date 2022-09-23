@@ -12,14 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
 import com.example.demo.entity.enums.SectionsEnum;
-import com.example.demo.entity.error.UserError;
 import com.example.demo.exception.DemoException;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.rest.response.RESTResponse;
+import com.example.demo.utils.Constant;
 
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
 	/**
 	 * Especificación JPA para {@link User}.
@@ -30,20 +29,20 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public RESTResponse<Boolean> canLogin(String user) {
+	public Boolean canLogin(String user) {
 		Optional<User> optUser = userRepository.findByLogin(user);
 		if (!optUser.isPresent()) {
-			throw new DemoException(UserError.USER_NOT_EXISTS.toString());
+			throw new DemoException(Constant.USER_NOT_EXISTS.toString());
 		}
 		if (optUser.get().getSections().isEmpty()) {
-			throw new DemoException(UserError.NO_SECTIONS_ACCESS.toString());
+			throw new DemoException(Constant.NO_SECTIONS_ACCESS.toString());
 		}
 		if (Collections.disjoint(
 				optUser.get().getSections().stream().map(Section::getAlias).collect(Collectors.toList()),
 				EnumSet.allOf(SectionsEnum.class).stream().map(SectionsEnum::toString)
 						.collect(Collectors.toList()))) {
-			throw new DemoException(UserError.NO_SECTIONS_ACCESS.toString());
+			throw new DemoException(Constant.NO_SECTIONS_ACCESS.toString());
 		}
-		return new RESTResponse<>(true);
+		return true;
 	}
 }
