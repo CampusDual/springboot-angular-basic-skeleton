@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,10 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.borjaglez.springify.repository.specification.SpecificationBuilder;
 import com.example.demo.entity.Contact;
-import com.example.demo.exception.DemoException;
 import com.example.demo.repository.ContactRepository;
 import com.example.demo.rest.response.DataSourceRESTResponse;
-import com.example.demo.utils.Constant;
 
 @Service
 public class ContactServiceImpl extends AbstractDemoService implements IContactService {

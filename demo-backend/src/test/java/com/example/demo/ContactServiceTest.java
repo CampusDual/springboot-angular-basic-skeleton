@@ -26,9 +26,6 @@ import com.borjaglez.springify.repository.specification.SpecificationImpl;
 import com.example.demo.entity.Contact;
 import com.example.demo.exception.DemoException;
 import com.example.demo.repository.ContactRepository;
-import com.example.demo.rest.model.CreateContactRequest;
-import com.example.demo.rest.model.EditContactRequest;
-import com.example.demo.rest.response.ContactResponse;
 import com.example.demo.service.ContactServiceImpl;
 
 @SpringBootTest
@@ -67,7 +64,7 @@ class ContactServiceTest {
 		when(this.contactRepository.findAll(any(SpecificationImpl.class), isA(Pageable.class))).thenReturn(contacts);
 
 		// test
-		List<ContactResponse> empList = contactService.getContacts(pageFilter).getData();
+		List<Contact> empList = contactService.getContacts(pageFilter).getData();
 
 		assertEquals(3, empList.size());
 	}
@@ -77,7 +74,7 @@ class ContactServiceTest {
 		when(contactRepository.findById(1)).thenReturn(
 				Optional.of(new Contact(1, "One", "Surname1One", "Surname2One", 666555444, "contact-one@gmail.com")));
 
-		ContactResponse contact = contactService.getContact(1).getData();
+		Contact contact = contactService.getContact(1);
 
 		assertNotNull(contact);
 	}
@@ -93,14 +90,14 @@ class ContactServiceTest {
 
 	@Test
 	void addContactTest() {
-		CreateContactRequest createContactRequest = new CreateContactRequest("One", "Surname1One", "Surname2One",
+		Contact createContactRequest = new Contact("One", "Surname1One", "Surname2One",
 				666555444, "contact-one@gmail.com");
-		Contact contact = contactService.fromCreateContactRequest(createContactRequest);
+		Contact contact = contactService.createContact(createContactRequest);
 		contact.setId(1);
 
 		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
 
-		Integer newContactId = contactService.createContact(createContactRequest).getData();
+		Integer newContactId = contactService.createContact(createContactRequest).getId();
 
 		assertNotNull(newContactId);
 		assertEquals(1, newContactId);
@@ -108,14 +105,14 @@ class ContactServiceTest {
 
 	@Test
 	void editContactTest() {
-		EditContactRequest editContactRequest = new EditContactRequest(1, "OneEdit", "Surname1OneEdit", "Surname2OneEdit",
+		Contact editContactRequest = new Contact(1, "OneEdit", "Surname1OneEdit", "Surname2OneEdit",
 				666555444, "contact-one-edit@gmail.com");
-		Contact contact = contactService.fromCreateContactRequest(editContactRequest);
+		Contact contact = contactService.createContact(editContactRequest);
 		contact.setId(1);
 		
 		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
 
-		Integer editContactId = contactService.editContact(editContactRequest).getData();
+		Integer editContactId = contactService.editContact(editContactRequest);
 
 		assertNotNull(editContactId);
 		assertEquals(1, editContactId);
@@ -123,7 +120,7 @@ class ContactServiceTest {
 	
 	@Test
 	void deleteContactTest() {
-		Integer result = contactService.deleteContact(1).getData();
+		Integer result = contactService.deleteContact(1);
 
 		assertNotNull(result);
 	}
