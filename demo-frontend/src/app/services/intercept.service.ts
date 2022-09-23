@@ -13,6 +13,7 @@ import { tap, finalize } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 // import { BusyService } from './busy.service';
 import { Router } from '@angular/router';
+import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 
 
 @Injectable()
@@ -35,7 +36,19 @@ export class InterceptService implements HttpInterceptor {
           // shows yellow text if responseCode is a warning
           if (event.body.responseCode === 'WARNING') {
             if (!event.url.includes('isSecurizationTemplateInUse')) {
-              this.snackBar.openSnackBar(this.translate.instant(event.body.responseMessage),
+              var message : string;
+              if(event.body.errors!=null){
+                for(let error of event.body.errors){
+                  if(message==null){
+                    message = this.translate.instant(error);
+                  }else{
+                    message= message+', '+this.translate.instant(error);
+                  } 
+                }
+              }else{
+                message = this.translate.instant(event.body.responseMessage);
+              }
+              this.snackBar.openSnackBar(message,
               this.translate.instant('CLOSE'), 'yellow-snackbar');
             }
           } else if (event.body.responseCode === 'KO') {
@@ -56,6 +69,8 @@ export class InterceptService implements HttpInterceptor {
             localStorage.removeItem('access_token');
             this.router.navigateByUrl('/login');
             this.snackBar.openSnackBar(this.translate.instant('TOKEN_EXPIRED'), this.translate.instant('CLOSE'), 'red-snackbar');
+          }if (err.status === 500) {
+            this.snackBar.openSnackBar(this.translate.instant('DATABASE_QUERY_ERROR'), this.translate.instant('CLOSE'), 'red-snackbar');
           } else {
             if (err.url.includes('token')) {
               this.snackBar.openSnackBar(this.translate.instant(err.error.error_description),

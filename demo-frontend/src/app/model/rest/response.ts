@@ -2,14 +2,13 @@
 // import { Profile } from '../profile';
 // import { Section } from '../section';
 
-export class RESTResponse<T> {
+
+
+export class DataSourceRESTResponse<T> {
+  totalElements: number;
   responseCode: string;
   responseMessage: string;
   data: T;
-}
-
-export class DataSourceRESTResponse<T> extends RESTResponse<T> {
-  totalElements: number;
 }
 
 // export class ProfileResponse {

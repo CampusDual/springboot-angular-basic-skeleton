@@ -51,5 +51,12 @@ public class Constant {
 	public static final String PAGE_INDEX_REQUIRED ="PAGE_INDEX_REQUIRED";
 	public static final String PAGE_SIZE_REQUIRED ="PAGE_SIZE_REQUIRED";
 	
+	public static final String MESSAGE = "responseMessage";
+	public static final String RESPONSE_CODE = "responseCode";
+	public static final String ERROR = "errors";
+	public static final String PHONE_ERROR ="contacts_phone_key";
+
+	
+	
 
 }

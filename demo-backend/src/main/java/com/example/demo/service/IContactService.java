@@ -2,8 +2,6 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.data.domain.Page;
-
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.entity.Contact;
 import com.example.demo.rest.response.DataSourceRESTResponse;
@@ -53,4 +51,13 @@ public interface IContactService {
 	 * @since 0.0.5
 	 */
 	List<Contact> findAll();
+	
+	/**
+	 * Modifica un usuario en la BDD.
+	 * 
+	 * @return el id del usuario modificado.
+	 * @since 0.0.5
+	 */
+	Integer editContact(Contact editContactRequest);
+	
 }

@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,16 +20,16 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.entity.Contact;
+import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.exception.DemoException;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IContactService;
@@ -41,8 +40,6 @@ import com.example.demo.utils.Constant;
 @RequestMapping(ContactsController.REQUEST_MAPPING)
 public class ContactsController {
 	public static final String REQUEST_MAPPING = "contacts";
-	public static final String MESSAGE = "message";
-	public static final String ERROR = "errors";
 	private static final Logger LOGGER = LoggerFactory.getLogger(ContactsController.class);
 
 	@Autowired
@@ -54,9 +51,9 @@ public class ContactsController {
 	 * @param id el id del contacto de la BDD.
 	 * @return el contacto cuyo id sea el pasado por parámetros.
 	 */
-	@GetMapping("/getContact/{id}")
+	@GetMapping("/getContact")
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> getContact(@PathVariable Integer id) {
+	public ResponseEntity<?> getContact(@RequestParam(value = "id") Integer id) {
 		LOGGER.info("getContact in progress...");
 		Contact contact = null;
 		Map<String, Object> response = new HashMap<>();
@@ -64,16 +61,19 @@ public class ContactsController {
 		try {
 			contact = contactService.getContact(id);
 			if(contact==null) {
-				response.put(MESSAGE, Constant.CONTACT_NOT_EXISTS);
-				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+				response.put(Constant.MESSAGE, Constant.CONTACT_NOT_EXISTS);
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 			}else {
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 				re = new ResponseEntity<Contact>(contact, HttpStatus.OK);
 			}
 		} catch (DataAccessException e) {
 			LOGGER.error(e.getMessage());
-			response.put(MESSAGE, Constant.DATABASE_QUERY_ERROR);
-			response.put(ERROR, e.getMessage());
-			re=  new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
+			response.put(Constant.ERROR, e.getMessage());
+			re=  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 		} 
 		LOGGER.info("getContact is finished...");
 		return re;
@@ -133,10 +133,19 @@ public class ContactsController {
 		if(!result.hasErrors()) {
 			try {
 				contactNew = contactService.createContact(createContactRequest);	
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 			} catch (DataAccessException e) {
-				message = Constant.DATABASE_QUERY_ERROR;
-				response.put(ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-				status= HttpStatus.INTERNAL_SERVER_ERROR;
+				if(e.getMostSpecificCause().getMessage().contains(Constant.PHONE_ERROR)) {
+					message = Constant.PHONE_ALREADY_EXISTS;
+					status= HttpStatus.OK;
+				}else {
+					message = Constant.DATABASE_QUERY_ERROR;
+					status= HttpStatus.BAD_REQUEST;
+				}
+				
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+				response.put(Constant.ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+				
 			}
 			response.put("contacto", contactNew);
 		}else {
@@ -144,13 +153,14 @@ public class ContactsController {
 			for(FieldError error : result.getFieldErrors()) {
 				errors.add(error.getDefaultMessage());
 			}
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.WARNING.getValue());
 			message = Constant.CONTACT_NOT_CREATED;
-			response.put(ERROR, errors);
+			response.put(Constant.ERROR, errors);
 			status = HttpStatus.BAD_REQUEST;
 		}
 		
 		LOGGER.info("createContact is finished...");
-		response.put(MESSAGE, message);
+		response.put(Constant.MESSAGE, message);
 		
 		return new ResponseEntity<Map<String, Object>>(response, status);
 	}
@@ -161,29 +171,31 @@ public class ContactsController {
 	 * @return el id del usuario modificado.
 	 * @since 0.0.5
 	 */
-	@PutMapping(path = "/editContact/{id}")
+	@PostMapping(path = "/editContact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> editContact(@Valid @RequestBody Contact editContactRequest, BindingResult result, @PathVariable Integer id) {
+	public ResponseEntity<?> editContact(@Valid @RequestBody Contact editContactRequest, BindingResult result) {
 		LOGGER.info("editContact in progress...");
-		Contact current = contactService.getContact(id);
-		Contact contactUpdate = null;
+		int id = 0;
+		Contact contactOlder = contactService.getContact(editContactRequest.getId());
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
 		String message = Constant.CONTACT_EDIT_SUCCESS;
-		if(current !=null) {	
+		if(contactOlder!=null) {
 			if(!result.hasErrors()) {
 				try {
-					current.setEmail(editContactRequest.getEmail());
-					current.setName(editContactRequest.getName());
-					current.setPhone(editContactRequest.getPhone());
-					current.setSurname1(editContactRequest.getSurname1());
-					current.setSurname2(editContactRequest.getSurname2());
-					contactUpdate = contactService.createContact(current);
-					response.put("contact", contactUpdate);
+					id = contactService.editContact(editContactRequest);
+					response.put("contactid", id);
+					response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 				}catch (DataAccessException e) {
-					message= Constant.DATABASE_QUERY_ERROR;
-					response.put(ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-					status= HttpStatus.BAD_REQUEST;
+					if(e.getMostSpecificCause().getMessage().contains(Constant.PHONE_ERROR)) {
+						message = Constant.PHONE_ALREADY_EXISTS;
+						status= HttpStatus.OK;
+					}else {
+						message = Constant.DATABASE_QUERY_ERROR;
+						status= HttpStatus.BAD_REQUEST;
+					}
+					response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+					response.put(Constant.ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 				}
 				
 			}else {
@@ -191,18 +203,20 @@ public class ContactsController {
 				for(FieldError error : result.getFieldErrors()) {
 					errors.add(error.getDefaultMessage());
 				}
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.WARNING.getValue());
 				message = Constant.CONTACT_NOT_EDIT;
-				response.put(ERROR, errors);
-				status = HttpStatus.BAD_REQUEST;
+				response.put(Constant.ERROR, errors);
+				status = HttpStatus.OK;
 			}
-			
 		}else {
-			status = HttpStatus.NOT_FOUND;
-			message = Constant.CONTACT_NOT_EXISTS;
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			message = Constant.ID_NOT_EXISTS;
+			status = HttpStatus.BAD_REQUEST;
 		}
+			
+
 		
-		response.put(MESSAGE, message);
-		response.put("contacto", contactUpdate);
+		response.put(Constant.MESSAGE, message);
 		LOGGER.info("editContact is finished...");
 		return new ResponseEntity<Map<String, Object>>(response, status);
 	
@@ -214,22 +228,24 @@ public class ContactsController {
 	 * @return el id del usuario eliminado.
 	 * @since 0.0.5
 	 */
-	@DeleteMapping("/deleteContact/{id}")
+	@DeleteMapping("/deleteContact")
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> deleteContact(@PathVariable Integer id) {
+	public ResponseEntity<?> deleteContact(@RequestParam(value = "id")Integer id) {
 		LOGGER.info("deleteContact in progress...");
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.OK;
 		String message = Constant.CONTACT_DELETE_SUCCESS;
 		try {
 			contactService.deleteContact(id);
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 		} catch (DataAccessException e) {
-			response.put(MESSAGE, Constant.DATABASE_QUERY_ERROR);
-			response.put(ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-			status = HttpStatus.INTERNAL_SERVER_ERROR;
+			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
+			response.put(Constant.ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			status = HttpStatus.BAD_REQUEST;
 			message = Constant.CONTACT_NOT_DELETE;
 		} 
-		response.put(MESSAGE, message);
+		response.put(Constant.MESSAGE, message);
 		LOGGER.info("deleteContact is finished...");
 		return new ResponseEntity<Map<String, Object>>(response,status);
 	}

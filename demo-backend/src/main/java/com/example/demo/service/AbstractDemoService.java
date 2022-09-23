@@ -1,6 +1,9 @@
 package com.example.demo.service;
 
+import org.hibernate.criterion.Restrictions;
+
 import com.borjaglez.springify.repository.filter.IPageFilter;
+import com.example.demo.entity.Contact;
 import com.example.demo.exception.DemoException;
 import com.example.demo.rest.model.QuerySortPaginationRequest;
 import com.example.demo.utils.Constant;
@@ -23,5 +26,9 @@ public class AbstractDemoService {
 			throw new DemoException(Constant.PAGE_SIZE_REQUIRED);
 		}
 	}
-
+	
+	public Contact fromEditContactRequest(Contact contactRequest) {
+		return new Contact(contactRequest.getId(), contactRequest.getName(), contactRequest.getSurname1(),
+				contactRequest.getSurname2(), contactRequest.getPhone(), contactRequest.getEmail());
+	}
 }

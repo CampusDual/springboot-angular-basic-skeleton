@@ -151,16 +151,18 @@ export class ContactsComponent implements OnInit, AfterViewInit {
     this.selection.deselect(contact);
     if (this.selection.selected && this.selection.selected.length === 0) {
       this.contactService.deleteContact(contact.id).subscribe((response) => {
+        console.log(response)
         if (response.responseCode !== 'OK') {
-          this.error = true;
-        } else {
+           this.error = true;
+         } else {
           this.loadContactsPage();
-        }
+         }
       });
     } else {
       this.contactService.deleteContact(contact.id).subscribe((response) => {
+        console.log(response);
         if (response.responseCode !== 'OK') {
-          this.error = true;
+           this.error = true;
         }
         this.delete();
       });
