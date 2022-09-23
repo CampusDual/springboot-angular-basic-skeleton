@@ -2,6 +2,7 @@ package com.example.demo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
@@ -82,19 +83,17 @@ class ContactServiceTest {
 	@Test
 	void contactNotPresentInDb() {
 		when(contactRepository.findById(1)).thenReturn(Optional.empty());
+		assertNull(contactService.getContact(1));
 
-		DemoException thrown = assertThrows(DemoException.class, () -> contactService.getContact(1));
-
-		assertEquals("ID_NOT_EXISTS", thrown.getMessage());
 	}
 
 	@Test
 	void addContactTest() {
 		Contact createContactRequest = new Contact("One", "Surname1One", "Surname2One",
 				666555444, "contact-one@gmail.com");
-		Contact contact = contactService.createContact(createContactRequest);
+		Contact contact = contactService.fromCreateContactRequest(createContactRequest);
 		contact.setId(1);
-
+		
 		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
 
 		Integer newContactId = contactService.createContact(createContactRequest).getId();
@@ -107,7 +106,7 @@ class ContactServiceTest {
 	void editContactTest() {
 		Contact editContactRequest = new Contact(1, "OneEdit", "Surname1OneEdit", "Surname2OneEdit",
 				666555444, "contact-one-edit@gmail.com");
-		Contact contact = contactService.createContact(editContactRequest);
+		Contact contact = contactService.fromCreateContactRequest(editContactRequest);
 		contact.setId(1);
 		
 		when(contactRepository.save(any(Contact.class))).thenReturn(contact);

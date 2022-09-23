@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import org.hibernate.criterion.Restrictions;
-
 import com.borjaglez.springify.repository.filter.IPageFilter;
 import com.example.demo.entity.Contact;
 import com.example.demo.exception.DemoException;
@@ -30,5 +28,10 @@ public class AbstractDemoService {
 	public Contact fromEditContactRequest(Contact contactRequest) {
 		return new Contact(contactRequest.getId(), contactRequest.getName(), contactRequest.getSurname1(),
 				contactRequest.getSurname2(), contactRequest.getPhone(), contactRequest.getEmail());
+	}
+	
+	public Contact fromCreateContactRequest(Contact contactRequest) {
+		return new Contact(contactRequest.getName(), contactRequest.getSurname1(), contactRequest.getSurname2(),
+				contactRequest.getPhone(), contactRequest.getEmail());
 	}
 }
