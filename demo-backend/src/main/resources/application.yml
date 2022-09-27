@@ -3,10 +3,10 @@ server:
   
 spring:
   datasource:
-    url: jdbc:postgresql://ec2-52-208-164-5.eu-west-1.compute.amazonaws.com:5432/d8s1uh2o1deln8
     driver-class-name: org.postgresql.Driver
-    username: iczminpqewqygr
-    password: 644d9b0aaf3bb285a3bbfb0bd7bcb32647d459e53305cc39a271fd2ea410ffc8
+    url: jdbc:postgresql://45.84.210.174:65432/Fullstack_2022_1_G1
+    username: Fullstack_2022_1_G1
+    password: 2OA0MFMzBZJbOyam1q
   jpa:
     hibernate.ddl-auto: update
     show-sql: true
