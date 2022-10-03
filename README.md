@@ -13,4 +13,17 @@
 	- npm install
 	- ng serve
 
+## TODO:
 
+- Crear algun ejemplo de inputs especificos. Por ejemplo, uno que valide telefonos, de manera que, por ejemplo, pasando al input un parametro como type='telf' o algo asi, que sea una extension de input, pero llamando a un metodo que valide el email y controle que lleva @, el punto del dominio... La idea es que sirva de ejemplo para que luego en las formaciones puedan crear los suyos propios cuando lo necesiten, complicando mas la validacion del telf, email, nif, etc. Ontimize Web proporciona este tipo de campos, por lo que sería hacer algo similar en medida de lo posible (complicandonos poco, un ejemplo básico): https://try.imatia.com/ontimizeweb/v8/playground/main/inputs/email
+- Insertar traducciones que vayan faltando
+- Podriamos quitar la vista de contactos y mostrar la de usuarios, ya que al final tiene como mas sentido, puesto que siempre se gestionarán usuarios. Si da tiempo y se puede hacer, mejor, si no, no pasa nada.
+
+- Revisar tanto en front como en back el uso de cosillas deprecadas e ir cambiandolo
+- Que no de ningun warning ni errores de sonarlint, para dar un modelo de codigo lo mas limpio posible
+- Arreglar pantalla de login para que el fondo llene todo y no solo el cacho que se ve ahora
+
+## Notas
+
+- Evaluar la posibilidad de utilizar [Lombok](https://projectlombok.org/) para eliminar las configuraciones de hibernate o la definicion de getters/setters. Esto a nivel formacion puede ser un problema, asi que primero enseñamos a crearlo todo sin Lombok pero luego podemos meterlo y enseñar las facilidades que proporciona
+- Evaluar también la inclusion de [mapstruct](https://mapstruct.org/) para minimizar los mapeos, por ejemplo de DTOs a DAOS y viceversa
