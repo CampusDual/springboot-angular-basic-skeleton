@@ -84,6 +84,6 @@
   "namerequired": "El nombre es un campo obligatorio",
   "surname1required": "El apellido es un campo obligatorio",
   "phonerequired":"El teléfono es un campo obligatorio",
-  "phonepatter": "El formato del teléfono no es correcto",
+  "phonepattern": "El formato del teléfono no es correcto",
   "emailpattern": "El formato del email no es correcto"
 }

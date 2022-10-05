@@ -1,7 +1,5 @@
 package com.example.demo.service;
 
-import org.hibernate.criterion.Restrictions;
-
 import com.borjaglez.springify.repository.filter.IPageFilter;
 import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.Contact;

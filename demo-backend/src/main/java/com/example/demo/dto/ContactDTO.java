@@ -1,6 +1,7 @@
 package com.example.demo.dto;
 
 public class ContactDTO {
+
 	private Integer id;
 	private String name;
 	private String surname1;
@@ -8,13 +9,12 @@ public class ContactDTO {
 	private Integer phone;
 	private String email;
 
+
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;

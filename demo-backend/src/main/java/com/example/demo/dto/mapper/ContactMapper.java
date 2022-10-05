@@ -10,7 +10,7 @@ import com.example.demo.entity.Contact;
 
 @Mapper
 public interface ContactMapper {
-	
+
     ContactMapper INSTANCE = Mappers.getMapper( ContactMapper.class );
  
     ContactDTO contactToContactDto(Contact contact);
@@ -18,5 +18,6 @@ public interface ContactMapper {
     List<ContactDTO> contactToContactDtoList(List<Contact> contacts);
     
     Contact contactDTOtoContact(ContactDTO contactdto);
+
 
 }

@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
+import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.Contact;
 import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.enums.ResponseCodeEnum;
@@ -36,7 +37,7 @@ import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IContactService;
 import com.example.demo.utils.Constant;
 
-@CrossOrigin(origins = {"http://localhost:4201"})
+@CrossOrigin(origins = { "http://localhost:4201" })
 @RestController
 @RequestMapping(ContactsController.REQUEST_MAPPING)
 public class ContactsController {
@@ -103,7 +104,7 @@ public class ContactsController {
 		LOGGER.info("getContacts is finished...");
 		return dres;
 	}
-	
+
 	/**
 	 * Devuelve todos los contactos que se encuentran en la tabla
 	 * 
@@ -233,7 +234,7 @@ public class ContactsController {
 	 */
 	@DeleteMapping("/deleteContact")
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> deleteContact(@RequestParam(value = "id")Integer id) {
+	public ResponseEntity<?> deleteContact(@RequestParam(value = "id") Integer id) {
 		LOGGER.info("deleteContact in progress...");
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.OK;
@@ -247,9 +248,9 @@ public class ContactsController {
 			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
 			status = HttpStatus.BAD_REQUEST;
 			message = Constant.CONTACT_NOT_DELETE;
-		} 
+		}
 		response.put(Constant.MESSAGE, message);
 		LOGGER.info("deleteContact is finished...");
-		return new ResponseEntity<Map<String, Object>>(response,status);
+		return new ResponseEntity<>(response, status);
 	}
 }

@@ -54,12 +54,12 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	 */
 	@Override
 	@Transactional
+
 	public ContactDTO createContact(ContactDTO createContactRequestDTO) {
 		Contact newContact = ContactMapper.INSTANCE.contactDTOtoContact(createContactRequestDTO);
 		Contact contact = contactRepository.save(newContact);
 		return ContactMapper.INSTANCE.contactToContactDto(contact);
 	}
-
 
 	/**
 	 * {@inheritDoc}

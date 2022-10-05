@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Contact } from 'src/app/model/contact';
 import { ContactService } from 'src/app/services/contact.service';
+
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 
@@ -72,7 +73,6 @@ export class EditContactComponent implements OnInit {
 
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
-      // const newContact: Contact = Object.assign({}, this.contactForm.value);
       this.router.navigate(['/contacts']);
     }else{
       console.log(response);
@@ -88,7 +88,6 @@ export class EditContactComponent implements OnInit {
   }
 
   cancel() {
-    // this.saveDetails.emit();
     this.router.navigate(['/contacts']);
   }
 }

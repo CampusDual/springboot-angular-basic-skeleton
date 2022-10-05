@@ -117,10 +117,4 @@ public class Profile implements Serializable {
 		this.sections.removeAll(sections);
 		sections.forEach(section -> section.getProfiles().remove(this));
 	}
-
-	public static Profile from(String query) {
-		Profile profile = new Profile(query, query);
-		profile.addSection(new Section(query));
-		return profile;
-	}
 }

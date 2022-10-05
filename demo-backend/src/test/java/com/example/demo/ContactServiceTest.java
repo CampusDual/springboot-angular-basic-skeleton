@@ -96,7 +96,6 @@ class ContactServiceTest {
 		contact.setId(1);
 		
 		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
-
 		String newContactName = contactService.createContact(createContactRequestDTO).getName();
 
 		assertNotNull(newContactName);

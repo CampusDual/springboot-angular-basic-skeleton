@@ -153,10 +153,6 @@ public class User implements Serializable {
 		profiles.forEach(profile -> profile.getUsers().remove(this));
 	}
 
-	public static User from(String query) {
-		return new User(query, query, query, query, query);
-	}
-
 	/**
 	 * Obtiene el nombre completo del usuario.
 	 * 

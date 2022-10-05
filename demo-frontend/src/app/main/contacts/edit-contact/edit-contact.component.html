@@ -1,4 +1,4 @@
-<form [formGroup]="contactForm"(ngSubmit)="save()" class="h-full">
+<form [formGroup]="contactForm" (ngSubmit)="save()" class="h-full">
   <div fxLayout="column" fxLayoutGap="20px" class="form-content">
     <div class="input-row">
       <mat-card fxFlex>
@@ -8,52 +8,52 @@
         <mat-card-content>
           <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
             <mat-form-field fxFlex>
-              <input  matInput type="text" color="primary" placeholder="{{ 'table.contacts.name' | translate }}"
+              <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.name' | translate }}"
                 formControlName="name" name="contact-name" required />
+                <mat-error>{{'namerequired'| translate}}</mat-error>
             </mat-form-field>
-            <div class="alert alert-danger" *ngIf="contactForm.get('name').hasError('required') && contactForm.get('name').touched">
-              {{'namerequired'| translate}}
-            </div>
           </div>
           <div class="input-row">
             <mat-form-field fxFlex>
               <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.surname1' | translate }}"
-                formControlName="surname1" name="contact-surname1" required/>
+                formControlName="surname1" name="contact-surname1" required />
+                <mat-error>
+                  {{'surname1required'| translate}}
+                </mat-error>
             </mat-form-field>
-            <div class="alert alert-danger" *ngIf="contactForm.get('surname1').hasError('required') && contactForm.get('surname1').touched">
-              {{'surname1required'| translate}}
-            </div>
             <mat-form-field fxFlex>
               <input matInput type="text" color="primary" placeholder="{{ 'table.contacts.surname2' | translate }}"
-                formControlName="surname2" name="contact-surname2"/>
+                formControlName="surname2" name="contact-surname2" />
             </mat-form-field>
           </div>
           <div class="input-row">
             <mat-form-field fxFlex>
               <input matInput type="tel" color="primary" placeholder="{{ 'table.contacts.phone' | translate }}"
-                formControlName="phone" name="contact-phone"  required/>
+                formControlName="phone" name="contact-phone" required />
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error *ngIf="contactForm.get('phone').hasError('required')">
+                  {{'phonerequired'| translate}}
+                </mat-error>
+                <mat-error *ngIf="contactForm.get('phone').hasError('pattern')">
+                  {{'phonepattern'| translate}}
+                </mat-error>
             </mat-form-field>
-            <div class="alert alert-danger" *ngIf="contactForm.get('phone').hasError('required') && contactForm.get('phone').touched">
-              {{'phonerequired'| translate}}
-            </div>
-            <div class="alert alert-danger" *ngIf="contactForm.get('phone').hasError('pattern') && contactForm.get('phone').touched">
-              {{'phonepatter'| translate}}
-            </div>
             <mat-form-field fxFlex>
               <input matInput type="email" color="primary" placeholder="{{ 'table.contacts.email' | translate }}"
-                formControlName="email" name="contact-email" email/>
+                formControlName="email" name="contact-email" email />
+                <mat-icon matSuffix>mail</mat-icon>
+                <mat-error>
+                  {{'emailpattern'| translate}}
+                </mat-error>
             </mat-form-field>
-            <div class="alert alert-danger" *ngIf="contactForm.get('email').hasError('pattern') && contactForm.get('email').touched">
-              {{'emailpattern'| translate}}
-            </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
           <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
             <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
-            [formNoValidate]="true">{{ 'button.cancel' | translate }}</button>
+              [formNoValidate]="true">{{ 'button.cancel' | translate }}</button>
             <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit" color="primary"
-            [disabled]="!contactForm.valid">{{ 'button.save' | translate }}</button>
+              [disabled]="!contactForm.valid">{{ 'button.save' | translate }}</button>
           </div>
         </mat-card-actions>
       </mat-card>

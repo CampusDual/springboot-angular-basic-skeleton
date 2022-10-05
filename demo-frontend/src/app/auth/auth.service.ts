@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { API_CONFIG } from '../shared/api.config';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBarComponent } from '../components/mat-snack-bar/mat-snack-bar.component';
+import { Buffer } from 'buffer';
 
 export const TOKEN_NAME: string = 'jwt_token';
 
@@ -33,7 +33,7 @@ export class AuthService {
       'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
       Authorization:
         'Basic ' +
-        btoa(`${environment.clientName}:${environment.clientSecret}`),
+        Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
     });
 
     const urlGrantTypeParams = new URLSearchParams();

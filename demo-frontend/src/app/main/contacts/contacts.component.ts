@@ -12,7 +12,6 @@ import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AnyPageFilter, AnyField, SortFilter } from 'src/app/model/rest/filter';
 import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBarComponent } from 'src/app/components/mat-snack-bar/mat-snack-bar.component';
 import { ContactDataSource } from '../../model/datasource/contacts.datasource';
 import { Contact } from '../../model/contact';
 import { ContactService } from '../../services/contact.service';
