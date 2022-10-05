@@ -73,7 +73,7 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	@Override
 	public List<ContactDTO> findAll() {
 
-		List<Contact> contacts = (List<Contact>) contactRepository.findAll();
+		List<Contact> contacts = contactRepository.findAll();
 		return ContactMapper.INSTANCE.contactToContactDtoList(contacts);
 	}
 

@@ -48,10 +48,8 @@ public class CipherUtils {
 			String charSet = "UTF-8";
 			byte[] in = plainText.getBytes(charSet);
 			byte[] out = ecipher.doFinal(in);
-			String encStr = new String(Base64.getEncoder().encode(out));
-			return encStr;
+			return new String(Base64.getEncoder().encode(out));
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
 			throw new DemoException(e.getMessage(), e);
 		}
 	}
@@ -72,10 +70,8 @@ public class CipherUtils {
 			byte[] enc = Base64.getDecoder().decode(encryptedText);
 			byte[] utf8 = dcipher.doFinal(enc);
 			String charSet = "UTF-8";
-			String plainStr = new String(utf8, charSet);
-			return plainStr;
+			return new String(utf8, charSet);
 		} catch (Exception e) {
-			LOGGER.error(e.getMessage(), e);
 			throw new DemoException(e.getMessage(), e);
 		}
 	}
@@ -92,7 +88,6 @@ public class CipherUtils {
 			SecretKey tmp = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA256").generateSecret(keySpec);
 			return new SecretKeySpec(tmp.getEncoded(), "AES");
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			LOGGER.error(e.getMessage(), e);
 			throw new DemoException(e.getMessage(), e);
 		}
 	}

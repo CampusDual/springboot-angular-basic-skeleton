@@ -174,7 +174,7 @@ public class ContactsController {
 	 */
 	@PostMapping(path = "/editContact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> editContact(@Valid @RequestBody Contact editContactRequest, BindingResult result) {
+	public ResponseEntity<Map<String, Object>> editContact(@Valid @RequestBody Contact editContactRequest, BindingResult result) {
 		LOGGER.info("editContact in progress...");
 		int id = 0;
 		ContactDTO contactOlder = contactService.getContact(editContactRequest.getId());
