@@ -3,7 +3,6 @@ package com.example.demo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.when;
@@ -24,8 +23,8 @@ import org.springframework.data.domain.Pageable;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.borjaglez.springify.repository.specification.SpecificationImpl;
+import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.Contact;
-import com.example.demo.exception.DemoException;
 import com.example.demo.repository.ContactRepository;
 import com.example.demo.service.ContactServiceImpl;
 
@@ -65,7 +64,7 @@ class ContactServiceTest {
 		when(this.contactRepository.findAll(any(SpecificationImpl.class), isA(Pageable.class))).thenReturn(contacts);
 
 		// test
-		List<Contact> empList = contactService.getContacts(pageFilter).getData();
+		List<ContactDTO> empList = contactService.getContacts(pageFilter).getData();
 
 		assertEquals(3, empList.size());
 	}
@@ -75,7 +74,7 @@ class ContactServiceTest {
 		when(contactRepository.findById(1)).thenReturn(
 				Optional.of(new Contact(1, "One", "Surname1One", "Surname2One", 666555444, "contact-one@gmail.com")));
 
-		Contact contact = contactService.getContact(1);
+		ContactDTO contact = contactService.getContact(1);
 
 		assertNotNull(contact);
 	}
@@ -96,10 +95,10 @@ class ContactServiceTest {
 		
 		when(contactRepository.save(any(Contact.class))).thenReturn(contact);
 
-		Integer newContactId = contactService.createContact(createContactRequest).getId();
+		String newContactName = contactService.createContact(createContactRequest).getName();
 
-		assertNotNull(newContactId);
-		assertEquals(1, newContactId);
+		assertNotNull(newContactName);
+		assertEquals("One", newContactName);
 	}
 
 	@Test

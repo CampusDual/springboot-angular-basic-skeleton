@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.List;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
+import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.Contact;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 
@@ -14,7 +15,7 @@ public interface IContactService {
 	 * @param id el id del usuario de la BDD.
 	 * @return el usuario cuyo id sea el pasado por parámetros.
 	 */
-	Contact getContact(Integer id);
+	ContactDTO getContact(Integer id);
 
 	/**
 	 * Devuelve los usuarios que alguno de sus campos contenga la 'query'
@@ -25,7 +26,7 @@ public interface IContactService {
 	 *         independientemente de las mayúsculas.
 	 * @since 0.0.5
 	 */
-	DataSourceRESTResponse<List<Contact>> getContacts(AnyPageFilter pageFilter);
+	DataSourceRESTResponse<List<ContactDTO>> getContacts(AnyPageFilter pageFilter);
 
 	/**
 	 * Crea un nuevo usuario en la BDD.
@@ -33,7 +34,7 @@ public interface IContactService {
 	 * @return el id del usuario creado.
 	 * @since 0.0.5
 	 */
-	Contact createContact(Contact createContactRequest);
+	ContactDTO createContact(Contact createContactRequest);
 
 	/**
 	 * Elimina un usuario de la BDD.
@@ -50,7 +51,7 @@ public interface IContactService {
 	 *         independientemente de las mayúsculas.
 	 * @since 0.0.5
 	 */
-	List<Contact> findAll();
+	List<ContactDTO> findAll();
 	
 	/**
 	 * Modifica un usuario en la BDD.

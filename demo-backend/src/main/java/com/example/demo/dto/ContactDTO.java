@@ -1,11 +1,20 @@
 package com.example.demo.dto;
 
 public class ContactDTO {
+	private String id;
 	private String name;
 	private String surname1;
 	private String surname2;
 	private Integer phone;
 	private String email;
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;

@@ -3,6 +3,7 @@
 ## Servicios
 ### demo-backend: Servidor Spring boot sobre Java 17. 
 - IDE recomendado: Eclipse, con plugin Spring tools instalado para poder arrancar el servidor desde el "Boot dashboard". 
+- Debido a la inclusion de la libreria MapStruct para el mapeado rápido de Entities a DTOs, es necesario hacer un "mvn clean install" al arrancar el proyecto para que genere todo el codigo del que nos abstrae a nosotros, si no posiblemente tengamos errores del tipo "Handler dispatch failed; nested exception is java.lang.ExceptionInInitializerError" o "cannot find implementation"
 
 ### demo-frontend: Cliente web sobre Angular 14. 
 - Versiones de Node con las que funciona: 
@@ -26,4 +27,3 @@
 ## Notas
 
 - Evaluar la posibilidad de utilizar [Lombok](https://projectlombok.org/) para eliminar las configuraciones de hibernate o la definicion de getters/setters. Esto a nivel formacion puede ser un problema, asi que primero enseñamos a crearlo todo sin Lombok pero luego podemos meterlo y enseñar las facilidades que proporciona
-- Evaluar también la inclusion de [mapstruct](https://mapstruct.org/) para minimizar los mapeos, por ejemplo de DTOs a DAOS y viceversa

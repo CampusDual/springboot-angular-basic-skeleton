@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.borjaglez.springify.repository.specification.SpecificationBuilder;
+import com.example.demo.dto.ContactDTO;
+import com.example.demo.dto.mapper.ContactMapper;
 import com.example.demo.entity.Contact;
 import com.example.demo.repository.ContactRepository;
 import com.example.demo.rest.response.DataSourceRESTResponse;
@@ -26,8 +28,9 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Contact getContact(Integer id) {
-		return contactRepository.findById(id).orElse(null);
+	public ContactDTO getContact(Integer id) {
+		Contact contact = contactRepository.findById(id).orElse(null);
+		return ContactMapper.INSTANCE.contactToContactDto(contact);
 	}
 
 	/**
@@ -35,13 +38,14 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public DataSourceRESTResponse<List<Contact>> getContacts(AnyPageFilter pageFilter) {
+	public DataSourceRESTResponse<List<ContactDTO>> getContacts(AnyPageFilter pageFilter) {
 		checkInputParams(pageFilter);
 		Page<Contact> contacts = SpecificationBuilder.selectDistinctFrom(contactRepository).where(pageFilter)
-				.findAll(pageFilter); 
-		DataSourceRESTResponse<List<Contact>> datares = new DataSourceRESTResponse<>();
+				.findAll(pageFilter);
+		DataSourceRESTResponse<List<ContactDTO>> datares = new DataSourceRESTResponse<>();
 		datares.setTotalElements((int) contacts.getTotalElements());
-		datares.setData(contacts.getContent());
+		List<ContactDTO> contactDtoList = ContactMapper.INSTANCE.contactToContactDtoList(contacts.getContent());
+		datares.setData(contactDtoList);
 		return datares;
 	}
 
@@ -50,11 +54,10 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	 */
 	@Override
 	@Transactional
-	public Contact createContact(Contact createContactRequest) {
-		
-		return contactRepository.save(createContactRequest);
+	public ContactDTO createContact(Contact createContactRequest) {
+		Contact contact = contactRepository.save(createContactRequest);
+		return ContactMapper.INSTANCE.contactToContactDto(contact);
 	}
-
 
 	/**
 	 * {@inheritDoc}
@@ -68,8 +71,10 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	}
 
 	@Override
-	public List<Contact> findAll() {
-		return (List<Contact>)contactRepository.findAll();
+	public List<ContactDTO> findAll() {
+
+		List<Contact> contacts = (List<Contact>) contactRepository.findAll();
+		return ContactMapper.INSTANCE.contactToContactDtoList(contacts);
 	}
 
 	@Override
