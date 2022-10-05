@@ -53,9 +53,16 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	 */
 	@Override
 	@Transactional
+<<<<<<< Updated upstream
 	public Contact createContact(Contact createContactRequest) {
 		
 		return contactRepository.save(createContactRequest);
+=======
+	public ContactDTO createContact(ContactDTO createContactRequestDTO) {
+		Contact newContact = ContactMapper.INSTANCE.contactDTOtoContact(createContactRequestDTO);
+		Contact contact = contactRepository.save(newContact);
+		return ContactMapper.INSTANCE.contactToContactDto(contact);
+>>>>>>> Stashed changes
 	}
 
 
@@ -76,8 +83,9 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	}
 
 	@Override
-	public Integer editContact(Contact editContactRequest) {
-		Contact editContact = contactRepository.save(fromEditContactRequest(editContactRequest));
+	public Integer editContact(ContactDTO editContactRequest) {
+		Contact contact = ContactMapper.INSTANCE.contactDTOtoContact(editContactRequest);
+		Contact editContact = contactRepository.save(fromEditContactRequest(contact));
 		return editContact.getId();
 	}
 

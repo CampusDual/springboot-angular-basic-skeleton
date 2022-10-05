@@ -3,6 +3,7 @@ package com.example.demo.service;
 import org.hibernate.criterion.Restrictions;
 
 import com.borjaglez.springify.repository.filter.IPageFilter;
+import com.example.demo.dto.ContactDTO;
 import com.example.demo.entity.Contact;
 import com.example.demo.exception.DemoException;
 import com.example.demo.rest.model.QuerySortPaginationRequest;
@@ -31,4 +32,12 @@ public class AbstractDemoService {
 		return new Contact(contactRequest.getId(), contactRequest.getName(), contactRequest.getSurname1(),
 				contactRequest.getSurname2(), contactRequest.getPhone(), contactRequest.getEmail());
 	}
+<<<<<<< Updated upstream
+=======
+	
+	public Contact fromCreateContactRequest(ContactDTO contactRequest) {
+		return  new Contact(contactRequest.getName(), contactRequest.getSurname1(), contactRequest.getSurname2(),
+				contactRequest.getPhone(), contactRequest.getEmail());
+	}
+>>>>>>> Stashed changes
 }

@@ -28,7 +28,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
+<<<<<<< Updated upstream
 import com.example.demo.entity.Contact;
+=======
+import com.example.demo.dto.ContactDTO;
+>>>>>>> Stashed changes
 import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.exception.DemoException;
 import com.example.demo.rest.response.DataSourceRESTResponse;
@@ -124,7 +128,7 @@ public class ContactsController {
 	 */
 	@PostMapping(path = "/createContact")
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> createContact(@Valid @RequestBody Contact createContactRequest, BindingResult result) {
+	public ResponseEntity<?> createContact(@Valid @RequestBody ContactDTO createContactRequest, BindingResult result) {
 		LOGGER.info("createContact in progress...");
 		Contact contactNew = null;
 		Map<String, Object> response = new HashMap<>();
@@ -173,7 +177,7 @@ public class ContactsController {
 	 */
 	@PostMapping(path = "/editContact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('CONTACTS')")
-	public ResponseEntity<?> editContact(@Valid @RequestBody Contact editContactRequest, BindingResult result) {
+	public ResponseEntity<?> editContact(@Valid @RequestBody ContactDTO editContactRequest, BindingResult result) {
 		LOGGER.info("editContact in progress...");
 		int id = 0;
 		Contact contactOlder = contactService.getContact(editContactRequest.getId());

@@ -33,7 +33,11 @@ public interface IContactService {
 	 * @return el id del usuario creado.
 	 * @since 0.0.5
 	 */
+<<<<<<< Updated upstream
 	Contact createContact(Contact createContactRequest);
+=======
+	ContactDTO createContact(ContactDTO createContactRequest);
+>>>>>>> Stashed changes
 
 	/**
 	 * Elimina un usuario de la BDD.
@@ -58,6 +62,6 @@ public interface IContactService {
 	 * @return el id del usuario modificado.
 	 * @since 0.0.5
 	 */
-	Integer editContact(Contact editContactRequest);
+	Integer editContact(ContactDTO editContactRequest);
 	
 }
