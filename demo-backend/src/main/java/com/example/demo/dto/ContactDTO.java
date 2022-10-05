@@ -1,18 +1,12 @@
 package com.example.demo.dto;
 
 public class ContactDTO {
-<<<<<<< Updated upstream
-=======
 	private Integer id;
->>>>>>> Stashed changes
 	private String name;
 	private String surname1;
 	private String surname2;
 	private Integer phone;
 	private String email;
-
-<<<<<<< Updated upstream
-=======
 
 	public Integer getId() {
 		return id;
@@ -22,7 +16,6 @@ public class ContactDTO {
 		this.id = id;
 	}
 
->>>>>>> Stashed changes
 	public String getName() {
 		return name;
 	}

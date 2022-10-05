@@ -32,12 +32,10 @@ public class AbstractDemoService {
 		return new Contact(contactRequest.getId(), contactRequest.getName(), contactRequest.getSurname1(),
 				contactRequest.getSurname2(), contactRequest.getPhone(), contactRequest.getEmail());
 	}
-<<<<<<< Updated upstream
-=======
-	
+
 	public Contact fromCreateContactRequest(ContactDTO contactRequest) {
 		return  new Contact(contactRequest.getName(), contactRequest.getSurname1(), contactRequest.getSurname2(),
 				contactRequest.getPhone(), contactRequest.getEmail());
 	}
->>>>>>> Stashed changes
+
 }
