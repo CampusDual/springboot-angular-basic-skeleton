@@ -8,11 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-import com.example.demo.utils.Constant;
 
 @Entity
 @Table(name = "contacts")
@@ -23,24 +18,18 @@ public class Contact implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotEmpty(message = Constant.NAME_REQUIRED)
 	@Column(nullable=false)
 	private String name;
 	
-	@NotEmpty(message = Constant.SURNAME1_REQUIRED)
 	@Column(nullable=false)
 	private String surname1;
 	
-	@NotEmpty(message = Constant.SURNAME2_REQUIRED)
 	@Column(nullable=false)
 	private String surname2;
 	
-	@NotNull(message = Constant.PHONE_REQUIRED)
 	@Column(nullable=false, unique = true)
 	private Integer phone;
 	
-	@NotEmpty(message = Constant.EMAIL_REQUIRED)
-	@Email(message= Constant.EMAIL_INVALID)
 	@Column(nullable=false)
 	private String email;
 
