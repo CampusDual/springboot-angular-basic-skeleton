@@ -39,7 +39,9 @@ public class SecurityBaseConfiguration extends ResourceServerConfigurerAdapter {
 		    	.antMatchers(
 		    		"/demo/**",
 		            "/oauth/check_token",
-		            "/oauth/token")
+		            "/oauth/token",
+		            //You can add here all endpoints you need to open access to them and no require token to call them:
+		            "/contacts/getContacts")
 				.permitAll()
                 .anyRequest().authenticated();
     }
