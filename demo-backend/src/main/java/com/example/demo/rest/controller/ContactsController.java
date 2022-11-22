@@ -81,11 +81,10 @@ public class ContactsController {
 
 
 	/**
-	 * Llamada REST para obtener usuarios que alguno de sus campos contenga la
-	 * 'query' independientemente de las mayúsculas.
+	 * Llamada REST para obtener contactos con paginación
 	 * 
-	 * @return usuarios que alguno de sus campos contenga la 'query'
-	 *         independientemente de las mayúsculas.
+	 * @return contactos con paginación
+	 * 
 	 * @since 0.0.5
 	 */
 	@PostMapping(path = "/getContacts", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -106,8 +105,8 @@ public class ContactsController {
 	/**
 	 * Devuelve todos los contactos que se encuentran en la tabla
 	 * 
-	 * @return usuarios que alguno de sus campos contenga la 'query'
-	 *         independientemente de las mayúsculas.
+	 * @return todos los contactos que contiene la tabla contacts
+	 * 
 	 * @since 0.0.5
 	 */
 	@GetMapping(path = "/getContacts")
@@ -118,9 +117,9 @@ public class ContactsController {
 	}
 
 	/**
-	 * Llamada REST para crear un nuevo usuario en la BDD.
+	 * Llamada REST para crear un nuevo contacto en la BDD.
 	 * 
-	 * @return el id del usuario creado.
+	 * @return el id del contacto creado.
 	 * @since 0.0.5
 	 */
 	@PostMapping(path = "/createContact")
@@ -168,9 +167,9 @@ public class ContactsController {
 
 
 	/**
-	 * Llamada REST para modificar un usuario en la BDD.
+	 * Llamada REST para modificar un contacto en la BDD.
 	 * 
-	 * @return el id del usuario modificado.
+	 * @return el id del contacto modificado.
 	 * @since 0.0.5
 	 */
 	@PostMapping(path = "/editContact", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -225,9 +224,9 @@ public class ContactsController {
 
 
 	/**
-	 * Elimina un usuario de la BDD.
+	 * Elimina un contacto de la BDD.
 	 * 
-	 * @return el id del usuario eliminado.
+	 * @return el id del contacto eliminado.
 	 * @since 0.0.5
 	 */
 	@DeleteMapping("/deleteContact")

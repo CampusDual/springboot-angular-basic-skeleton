@@ -2,8 +2,6 @@ package com.example.demo.utils;
 
 public class Constant {
 	
-	public Constant() {
-	}
 	//Contact error
 	public static final String NAME_REQUIRED ="NAME_REQUIRED";
 	public static final String ID_REQUIRED ="ID_REQUIRED";

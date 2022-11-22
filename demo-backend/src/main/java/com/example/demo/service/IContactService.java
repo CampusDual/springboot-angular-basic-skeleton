@@ -10,37 +10,36 @@ import com.example.demo.rest.response.DataSourceRESTResponse;
 public interface IContactService {
 
 	/**
-	 * Obtiene un usuario de BDD con el id indicado.
+	 * Obtiene un contacto de BDD con el id indicado.
 	 * 
 	 * @param id el id del usuario de la BDD.
-	 * @return el usuario cuyo id sea el pasado por parámetros.
+	 * @return el contacto cuyo id sea el pasado por parámetros.
 	 */
 	ContactDTO getContact(Integer id);
 
 	/**
-	 * Devuelve los usuarios que alguno de sus campos contenga la 'query'
-	 * independientemente de las mayúsculas.
+	 * Devuelve los contactos con paginación
 	 * 
 	 * @param pageFilter filtro de la tabla
-	 * @return usuarios que alguno de sus campos contenga la 'query'
-	 *         independientemente de las mayúsculas.
+	 * @return contactos paginados
+	 * 
 	 * @since 0.0.5
 	 */
 	DataSourceRESTResponse<List<ContactDTO>> getContacts(AnyPageFilter pageFilter);
 
 	/**
-	 * Crea un nuevo usuario en la BDD.
+	 * Crea un nuevo contacto en la BDD.
 	 * 
-	 * @return el id del usuario creado.
+	 * @return el id del contacto creado.
 	 * @since 0.0.5
 	 */
 	ContactDTO createContact(ContactDTO createContactRequest);
 
 
 	/**
-	 * Elimina un usuario de la BDD.
+	 * Elimina un contacto de la BDD.
 	 * 
-	 * @return el id del usuario eliminado.
+	 * @return el id del contacto eliminado.
 	 * @since 0.0.5
 	 */
 	Integer deleteContact(Integer id);
@@ -48,16 +47,16 @@ public interface IContactService {
 	/**
 	 * Devuelve todos los contactos que se encuentran en la tabla
 	 * 
-	 * @return usuarios que alguno de sus campos contenga la 'query'
-	 *         independientemente de las mayúsculas.
+	 * @return todos los contactos que se encuentran en la BDD
+	 * 
 	 * @since 0.0.5
 	 */
 	List<ContactDTO> findAll();
 	
 	/**
-	 * Modifica un usuario en la BDD.
+	 * Modifica un contacto en la BDD.
 	 * 
-	 * @return el id del usuario modificado.
+	 * @return el id del contacto modificado.
 	 * @since 0.0.5
 	 */
 	Integer editContact(ContactDTO editContactRequest);

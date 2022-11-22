@@ -31,6 +31,10 @@ public class SecurityBaseConfiguration extends ResourceServerConfigurerAdapter {
         SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
 	}
 	
+	/*
+	 * En el método antMatcher se añaden las urls de los métodos que no necesitan token para acceder,
+	 * es decir, métodos a los que se accede en una parte pública
+	 */
     @Override
     public void configure(HttpSecurity http) throws Exception {
     	http.headers().frameOptions().disable();
@@ -40,7 +44,6 @@ public class SecurityBaseConfiguration extends ResourceServerConfigurerAdapter {
 		    		"/demo/**",
 		            "/oauth/check_token",
 		            "/oauth/token",
-		            //You can add here all endpoints you need to open access to them and no require token to call them:
 		            "/contacts/getContacts")
 				.permitAll()
                 .anyRequest().authenticated();
