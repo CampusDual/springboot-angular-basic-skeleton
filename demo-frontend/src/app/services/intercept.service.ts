@@ -26,7 +26,10 @@ export class InterceptService implements HttpInterceptor {
     return next.handle(request).pipe(
       tap(event => {
         if (event instanceof HttpResponse) {
-          // shows yellow text if responseCode is a warning
+          /**
+           * Mensajes que se muestran en el snakbar. Son mensajes de warning que llegan desde Backend como keys.(se recogen en var message)
+           * Se deben añadir las traducciones de los nuevos mensajes que se añadan en los json que se encuentran en assets/i18n
+           */
           if (event.body.responseCode === 'WARNING') {
             if (!event.url.includes('isSecurizationTemplateInUse')) {
               var message : string;

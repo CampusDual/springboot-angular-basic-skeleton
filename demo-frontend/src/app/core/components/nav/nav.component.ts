@@ -48,7 +48,13 @@ export class NavComponent implements OnInit, OnDestroy {
     this.commandBarSidenavService.setSidenav(this.sidenav);
   }
 
+  /*
+   * Comprobamos si está logueado correctamente y las urls a las que se puede acceder sin login
+   */
   public isAuthenticated() {
+    /*
+     *Las urls que se añaden en este if son las urls que se pueden acceder sin estar logueado 
+     */
     if (!this.authService.isLoggedIn() && !(this.router.url === '/login' || this.router.url === '/')) {
       this.authService.redirectLoginSessionExpiration();
     }
@@ -58,7 +64,9 @@ export class NavComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     this.logger.info('NavComponent: ngOnDestroy()');
   }
-
+  /*
+   * Devuelve las secciones a las que tiene permiso de acceso el perfil del usuario que se ha logueado para mostrarlas en la sidenav
+   */
   get allowedRoutes() {
     const allowedRoutes: Array<ROUTE> = [];
     if (this.isAuthenticated()) {

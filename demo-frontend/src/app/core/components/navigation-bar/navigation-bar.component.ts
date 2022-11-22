@@ -30,7 +30,9 @@ export class NavigationBarComponent {
 
   logout() {
     this.authService.logout();
-    // Redirect the user
+    /*
+     * Redirecciona cuando te deslogueas
+     */
     this.router.navigateByUrl('/login');
     localStorage.setItem('close_session', '1');
     localStorage.setItem('close_session_language', this.translateService.currentLang);
@@ -42,5 +44,17 @@ export class NavigationBarComponent {
   toogleLanguage(lang: string) {
     this.selectedLanguage = lang;
     this.translateService.use(lang);
+  }
+
+  /*
+   * Muestra la navbar si navVisible es true. 
+   * Para controlar en las url donde no nos interese mostrar la navbar, por ejemplo, una landing page
+   */
+  get navVisible(){
+    let navVisible :boolean = true;
+      if(this.router.url === '/login'){
+        navVisible=false;
+      }
+    return navVisible;
   }
 }

@@ -20,18 +20,20 @@ export class ContactService {
     const url = API_CONFIG.getContacts;
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=utf-8',
-      // Authorization: 'Basic ' + btoa(`${environment.clientName}:${environment.clientSecret}`),
       Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
     });
     return this.http.post<DataSourceRESTResponse<Contact[]>>(url, pageFilter, { headers });
   }
 
   public getContact(id: number): Observable<Contact> {
+    /**url del método de back al que se conecta */
     const url = API_CONFIG.getContact;
+    /**header que mandas al método de back, en este caso Content-type y autorización de login para el token */
     const headers = new HttpHeaders({
       'Content-type': 'charset=utf-8',
       Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
     });
+    /**parámetros que se pasan al método de back */
     const params = new HttpParams().set('id', id.toString());
     return this.http.get<Contact>(url, { params, headers });
   }
@@ -52,6 +54,7 @@ export class ContactService {
 
   public editContact(contact: Contact): Observable<any> {
     const url = API_CONFIG.editContact;
+    /**body que se pasa al método de back */
     const body: EditContactRequest = new EditContactRequest(contact);
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=utf-8',

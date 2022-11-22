@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     if (this.authService.isLoggedIn()) {
       // Get the redirect URL from our auth service
       // If no redirect has been set, use the default
+      this.authService.redirectMain();
       const redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : '/main';
 
       // Redirect the user

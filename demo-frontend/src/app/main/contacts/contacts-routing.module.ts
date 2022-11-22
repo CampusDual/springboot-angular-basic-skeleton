@@ -4,7 +4,9 @@ import { ContactsLayoutComponent } from './contacts-layout.component';
 import { ContactsComponent } from './contacts.component';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 
-
+/*
+ * Routing propio del componente Contacts
+ */
 const routes: Routes = [
   {
     path: '',

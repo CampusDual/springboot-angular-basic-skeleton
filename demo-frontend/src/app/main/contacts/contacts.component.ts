@@ -93,7 +93,9 @@ export class ContactsComponent implements OnInit, AfterViewInit {
       )
       .subscribe();
   }
-
+/**
+ * Es el método actualiza la tabla, ya sea por el botón refrescar o llamando desde la paginación
+ */
   loadContactsPage() {
     this.selection.clear();
     this.error = false;

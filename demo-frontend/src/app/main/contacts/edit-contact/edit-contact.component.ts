@@ -58,6 +58,9 @@ export class EditContactComponent implements OnInit {
     });
   }
 
+  /**
+   * Mismo método para eliminar o editar, dependiendo de si el id está informado o no
+   */
   save() {
     const newContact: Contact = Object.assign({}, this.contactForm.value);
     if (newContact.id) {

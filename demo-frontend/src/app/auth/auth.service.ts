@@ -97,4 +97,15 @@ export class AuthService {
       window.location.reload();
     }, 100);
   }
+
+  /*
+   * Según el o los roles(secciones) que estén asociadas a un perfil, se redirecciona a una url diferente cuando se loguee.
+   * En este caso, si el perfil tiene acceso a la sección CONTACTS, se redirige a main(hace lo mismo que si no existiese este método en este caso),
+   * pero en el caso de que queramos que rediriga a otra url diferente, en this.redirectUrl se le da el valor que queramos
+   */
+  redirectMain(){
+    if(this.getRoles().includes("CONTACTS")){
+      this.redirectUrl="/main"
+    }
+  }
 }

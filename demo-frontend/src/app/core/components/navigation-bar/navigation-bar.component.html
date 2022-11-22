@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="app-navigation-bar mat-elevation-z4">
+<mat-toolbar color="primary" class="app-navigation-bar mat-elevation-z4" *ngIf="navVisible">
   <mat-toolbar-row>
     <button mat-icon-button (click)="toggleSidenav.emit()">
       <mat-icon>menu</mat-icon>
