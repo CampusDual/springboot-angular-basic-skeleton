@@ -26,4 +26,4 @@
 
 ## Notas
 
-- Evaluar la posibilidad de utilizar [Lombok](https://projectlombok.org/) para eliminar las configuraciones de hibernate o la definicion de getters/setters. Esto a nivel formacion puede ser un problema, asi que primero enseñamos a crearlo todo sin Lombok pero luego podemos meterlo y enseñar las facilidades que proporciona
+~~- Evaluar la posibilidad de utilizar [Lombok](https://projectlombok.org/) para eliminar las configuraciones de hibernate o la definicion de getters/setters. Esto a nivel formacion puede ser un problema, asi que primero enseñamos a crearlo todo sin Lombok pero luego podemos meterlo y enseñar las facilidades que proporciona~~ DESCARTAMOS COMPLETAMENTE EL USO DE LOMBOK YA QUE NO TIENE SENTIDO EN FORMACIONES
